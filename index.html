@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escola do Futuro - Informacoes e Conceitos</title>
+  <title>Portal Escolar Inclusivo</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 </head>
@@ -11,39 +11,116 @@
 
   <header>
     <h1>Escola do Futuro</h1>
-    <nav>
-      <ul>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#conceitos">Conceitos</a></li>
-        <li><a href="#interativo">Espaco Interativo</a></li>
-      </ul>
+    <p class="tagline">Conhecimento, Inclusão e Tecnologia ao alcance de todos</p>
+   
+    <nav class="nav-buttons">
+      <button class="nav-btn active" onclick="showPage('inicio')">Início</button>
+      <button class="nav-btn" onclick="showPage('conceitos')">Conceitos</button>
+      <button class="nav-btn" onclick="showPage('informacoes')">Informações</button>
+      <button class="nav-btn" onclick="showPage('interativo')">Laboratório p5.js</button>
     </nav>
   </header>
 
   <main>
-    <section id="sobre" class="card">
-      <h2>Sobre Nossa Escola</h2>
-      <p>Bem-vindo ao nosso portal informativo. Nosso objetivo e compartilhar conhecimento e conceitos educacionais de forma acessível para todos os alunos e a comunidade.</p>
+    <section id="inicio" class="tab-content active">
+      <div class="card">
+        <h2>Bem-vindo ao Nosso Portal</h2>
+        <p>A Escola do Futuro foi desenvolvida com foco total em acessibilidade e responsividade. Nosso objetivo é disponibilizar conteúdo didático, materiais de apoio e simulações científicas interativas para estudantes, pais e professores.</p>
+      </div>
+
+      <div class="grid-container">
+        <div class="card">
+          <h3>Acessibilidade Universal</h3>
+          <p>Plataforma adaptável a qualquer dispositivo: celulares, tablets, leitores de tela e computadores.</p>
+        </div>
+        <div class="card">
+          <h3>Inovação Pedagógica</h3>
+          <p>Aulas dinâmicas com simulações visuais para facilitar a assimilação de conceitos complexos.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="conceitos" class="card">
-      <h2>Conceitos Pedagogicos</h2>
-      <ul>
-        <li><strong>Aprendizagem Ativa:</strong> O aluno no centro do processo de ensino.</li>
-        <li><strong>Tecnologia Integrada:</strong> Uso de ferramentas digitais no dia a dia.</li>
-        <li><strong>Inclusao Universal:</strong> Acesso garantido a todos os perfis de estudantes.</li>
-      </ul>
+    <section id="conceitos" class="tab-content">
+      <div class="card">
+        <h2>Conceitos Pedagógicos e Científicos</h2>
+        <p>Explores as metodologias aplicadas em nossa instituição para promover o aprendizado contínuo.</p>
+      </div>
+
+      <div class="card">
+        <h3>1. Aprendizagem Ativa</h3>
+        <p>Os alunos constroem o conhecimento por meio de resolução de problemas reais, experimentos e projetos colaborativos, deixando de ser apenas ouvintes passivos.</p>
+      </div>
+
+      <div class="card">
+        <h3>2. Pensamento Computacional</h3>
+        <p>Integramos lógica, algoritmos e programação de forma transversal em disciplinas como Matemática, Física e Artes.</p>
+      </div>
+
+      <div class="card">
+        <h3>3. Design Universal para a Aprendizagem (DUA)</h3>
+        <p>Garantimos múltiplos meios de engajamento, representação e expressão para que todos os estudantes aprendam sem barreiras.</p>
+      </div>
     </section>
 
-    <section id="interativo" class="card">
-      <h2>Demonstracao Interativa</h2>
-      <p>Abaixo esta uma simulacao visual gerada em tempo real com p5.js:</p>
-      <div id="canvas-container"></div>
+    <section id="informacoes" class="tab-content">
+      <div class="card">
+        <h2>Informações Gerais e Quadro de Horários</h2>
+        <p>Confira os dados de funcionamento, calendário e modalidades de ensino ofertadas.</p>
+      </div>
+
+      <div class="card">
+        <h3>Quadro de Modalidades</h3>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Nível de Ensino</th>
+                <th>Turno</th>
+                <th>Foco Principal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ensino Fundamental II</td>
+                <td>Manhã / Tarde</td>
+                <td>Base Científica e Leitura Crítica</td>
+              </tr>
+              <tr>
+                <td>Ensino Médio Técnico</td>
+                <td>Integral</td>
+                <td>Tecnologia, Programação e Projetos</td>
+              </tr>
+              <tr>
+                <td>Educação de Jovens e Adultos (EJA)</td>
+                <td>Noite</td>
+                <td>Inclusão Digital e Qualificação</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Canais de Atendimento</h3>
+        <ul>
+          <li><strong>Secretaria:</strong> segunda a sexta, das 07h às 19h</li>
+          <li><strong>Atendimento Online:</strong> suporte24h@escoladofuturo.edu.br</li>
+          <li><strong>Biblioteca Digital:</strong> Acesso livre para alunos matriculados</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="interativo" class="tab-content">
+      <div class="card">
+        <h2>Laboratório Virtual Interativo</h2>
+        <p>Exemplo de simulação visual desenvolvida em JavaScript para estudo de física/geometria. Mova o mouse ou toque na tela para interagir com o elemento visual.</p>
+        <div id="canvas-container"></div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 Escola do Futuro - Todos os direitos reservados.</p>
+    <p>&copy; 2026 Escola do Futuro — Plataforma Educacional Aberta e Responsiva.</p>
   </footer>
 
   <script src="sketch.js"></script>
