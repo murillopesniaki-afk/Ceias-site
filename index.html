@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escola do Futuro - Informacoes e Conceitos</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
 
+  <header>
+    <h1>Escola do Futuro</h1>
+    <nav>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#conceitos">Conceitos</a></li>
+        <li><a href="#interativo">Espaco Interativo</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="sobre" class="card">
+      <h2>Sobre Nossa Escola</h2>
+      <p>Bem-vindo ao nosso portal informativo. Nosso objetivo e compartilhar conhecimento e conceitos educacionais de forma acessível para todos os alunos e a comunidade.</p>
+    </section>
+
+    <section id="conceitos" class="card">
+      <h2>Conceitos Pedagogicos</h2>
+      <ul>
+        <li><strong>Aprendizagem Ativa:</strong> O aluno no centro do processo de ensino.</li>
+        <li><strong>Tecnologia Integrada:</strong> Uso de ferramentas digitais no dia a dia.</li>
+        <li><strong>Inclusao Universal:</strong> Acesso garantido a todos os perfis de estudantes.</li>
+      </ul>
+    </section>
+
+    <section id="interativo" class="card">
+      <h2>Demonstracao Interativa</h2>
+      <p>Abaixo esta uma simulacao visual gerada em tempo real com p5.js:</p>
+      <div id="canvas-container"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Escola do Futuro - Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="sketch.js"></script>
+</body>
+</html>

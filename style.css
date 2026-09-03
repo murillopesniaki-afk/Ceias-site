@@ -1,0 +1,86 @@
+/* Configuracoes Globais e Responsividade */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f9;
+  color: #333;
+  padding: 10px;
+}
+
+header {
+  background-color: #1e3c72;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #1e3c72;
+  margin-bottom: 10px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+#canvas-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  width: 100%;
+  overflow: hidden;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Ajuste específico para telas pequenas (Celulares) */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+ 
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
