@@ -43,8 +43,11 @@
             <div class="flex justify-between items-center h-20">
                 <!-- LOGO DA ESCOLA -->
                 <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center text-brand-gold border-2 border-brand-yellow font-bold text-xl shadow-md">
-                        <i data-lucide="graduation-cap" class="w-7 h-7"></i>
+                    <div class="w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center text-brand-gold border-2 border-brand-yellow font-bold shadow-md">
+                        <svg class="w-7 h-7 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                        </svg>
                     </div>
                     <div>
                         <h1 class="font-bold text-lg leading-tight text-brand-blue">C.E.C. Irmã Ambrósia Sabatovich</h1>
@@ -55,7 +58,8 @@
                 <!-- MENU NAVEGAÇÃO DESKTOP -->
                 <nav class="hidden md:flex items-center gap-6 font-medium text-slate-600">
                     <a href="#inicio" class="hover:text-brand-blue transition">Início</a>
-                    <a href="#sobre" class="hover:text-brand-blue transition">Sobre a Escola</a>
+                    <a href="#estatisticas" class="hover:text-brand-blue transition">Números</a>
+                    <a href="#sobre" class="hover:text-brand-blue transition">Sobre</a>
                     <a href="#avisos" class="hover:text-brand-blue transition">Mural</a>
                     <a href="#prompt-generator" class="hover:text-brand-blue transition flex items-center gap-1 text-brand-blue font-semibold bg-brand-yellow/10 px-3 py-1.5 rounded-lg border border-brand-yellow/30">
                         <i data-lucide="sparkles" class="w-4 h-4 text-brand-yellow"></i>
@@ -74,6 +78,7 @@
         <!-- MENU MOBILE -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
             <a href="#inicio" class="block py-2 text-slate-700 hover:text-brand-blue">Início</a>
+            <a href="#estatisticas" class="block py-2 text-slate-700 hover:text-brand-blue">Estatísticas</a>
             <a href="#sobre" class="block py-2 text-slate-700 hover:text-brand-blue">Sobre a Escola</a>
             <a href="#avisos" class="block py-2 text-slate-700 hover:text-brand-blue">Mural</a>
             <a href="#prompt-generator" class="block py-2 text-brand-blue font-semibold">Gerador de Prompts IA</a>
@@ -85,22 +90,44 @@
     <section id="inicio" class="gradient-bg hero-pattern text-white py-20 px-4 relative overflow-hidden">
         <div class="max-w-5xl mx-auto text-center relative z-10">
             <span class="inline-block bg-brand-yellow text-slate-900 text-xs uppercase font-bold tracking-wider px-3 py-1 rounded-full mb-4 shadow">
-                São José dos Pinhais - PR
+                São José dos Pinhais - PR • Colônia Marcelino
             </span>
             <h2 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
                 Valorizando a Educação do Campo e o Conhecimento
             </h2>
             <p class="text-lg md:text-xl text-slate-100 mb-8 max-w-2xl mx-auto font-light">
-                O Colégio Estadual do Campo Irmã Ambrósia Sabatovich promove um ensino de qualidade integrado às tradições, comunidade e tecnologias modernas.
+                Atendendo <strong>480 alunos</strong> matriculados, o Colégio Estadual do Campo Irmã Ambrósia Sabatovich promove ensino de qualidade integrado à comunidade rural.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="#prompt-generator" class="bg-brand-gold text-slate-900 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-yellow-400 transition flex items-center gap-2">
                     <i data-lucide="bot" class="w-5 h-5"></i>
                     Criar Prompt para IA
                 </a>
-                <a href="#sobre" class="bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold px-6 py-3 rounded-xl border border-white/20 transition">
-                    Conhecer a Escola
+                <a href="#contato" class="bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold px-6 py-3 rounded-xl border border-white/20 transition">
+                    Fale Conosco
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAINEL ESTATÍSTICO -->
+    <section id="estatisticas" class="py-10 bg-brand-blue text-white border-b border-brand-yellow/30">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                <div class="text-3xl md:text-4xl font-extrabold text-brand-gold">480</div>
+                <div class="text-xs uppercase font-semibold text-slate-300 mt-1">Alunos Atendidos</div>
+            </div>
+            <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                <div class="text-3xl md:text-4xl font-extrabold text-brand-gold">EF II e EM</div>
+                <div class="text-xs uppercase font-semibold text-slate-300 mt-1">Níveis de Ensino</div>
+            </div>
+            <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                <div class="text-3xl md:text-4xl font-extrabold text-brand-gold">SEED-PR</div>
+                <div class="text-xs uppercase font-semibold text-slate-300 mt-1">Rede Estadual</div>
+            </div>
+            <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                <div class="text-3xl md:text-4xl font-extrabold text-brand-gold">Campo</div>
+                <div class="text-xs uppercase font-semibold text-slate-300 mt-1">Modalidade</div>
             </div>
         </div>
     </section>
@@ -115,11 +142,11 @@
         <div class="grid md:grid-cols-3 gap-8">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
                 <div class="w-12 h-12 bg-brand-blue/10 rounded-xl flex items-center justify-center text-brand-blue mb-4">
-                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                    <i data-lucide="users" class="w-6 h-6"></i>
                 </div>
-                <h4 class="text-xl font-semibold mb-2 text-slate-900">Ensino de Qualidade</h4>
+                <h4 class="text-xl font-semibold mb-2 text-slate-900">480 Estudantes</h4>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    Atendimento do Ensino Fundamental II e Ensino Médio, unindo a matriz curricular do estado do Paraná com valorizações da vida no campo.
+                    Atendimento dedicado aos alunos do Ensino Fundamental II e Ensino Médio residentes na região rural de São José dos Pinhais.
                 </p>
             </div>
 
@@ -127,9 +154,9 @@
                 <div class="w-12 h-12 bg-brand-green/10 rounded-xl flex items-center justify-center text-brand-green mb-4">
                     <i data-lucide="sprout" class="w-6 h-6"></i>
                 </div>
-                <h4 class="text-xl font-semibold mb-2 text-slate-900">Identidade do Campo</h4>
+                <h4 class="text-xl font-semibold mb-2 text-slate-900">Educação do Campo</h4>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    Localizado na tradicional Colônia Marcelino, respeitamos e valorizamos a cultura local, sustentabilidade e desenvolvimento comunitário.
+                    Localizado na tradicional Colônia Marcelino, o colégio integra o currículo escolar à valorização das raízes, agricultura familiar e sustentabilidade.
                 </p>
             </div>
 
@@ -137,15 +164,15 @@
                 <div class="w-12 h-12 bg-brand-yellow/20 rounded-xl flex items-center justify-center text-amber-600 mb-4">
                     <i data-lucide="cpu" class="w-6 h-6"></i>
                 </div>
-                <h4 class="text-xl font-semibold mb-2 text-slate-900">Tecnologia & Futuro</h4>
+                <h4 class="text-xl font-semibold mb-2 text-slate-900">Tecnologia & Inovação</h4>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    Incentivamos nossos alunos no uso consciente de ferramentas digitais e Inteligência Artificial para estudos e pesquisas escolares.
+                    Incentivo ao uso pedagógico de Inteligência Artificial e ferramentas digitais para apoio às pesquisas e estudos dos alunos.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- FERRAMENTA INTERATIVA: GERADOR DE PROMPTS DE IA -->
+    <!-- GERADOR DE PROMPTS DE IA -->
     <section id="prompt-generator" class="py-16 bg-slate-100 border-y border-slate-200 px-4">
         <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
             <div class="bg-brand-blue text-white p-6 md:p-8 relative">
@@ -156,7 +183,7 @@
                     <h3 class="text-2xl font-bold">Gerador de Prompts Escolares (IA)</h3>
                 </div>
                 <p class="text-blue-100 text-sm">
-                    Monte instruções (prompts) personalizadas contendo as informações da escola para usar no ChatGPT, Gemini ou outras IAs em seus trabalhos e estudos.
+                    Monte instruções (prompts) personalizadas contendo as informações da escola para usar no ChatGPT, Gemini ou Copilot em seus trabalhos.
                 </p>
             </div>
 
@@ -224,27 +251,27 @@
             <div class="bg-white border-l-4 border-brand-yellow p-6 rounded-2xl shadow-sm border-y border-r border-slate-200">
                 <span class="text-xs font-bold text-amber-600 uppercase tracking-wide">Evento Cultural</span>
                 <h4 class="font-bold text-lg mt-1 mb-2 text-slate-900">Feira do Campo e do Conhecimento</h4>
-                <p class="text-slate-600 text-sm mb-4">Apresentação dos trabalhos desenvolvidos pelos alunos sobre sustentabilidade e tradições regionais.</p>
+                <p class="text-slate-600 text-sm mb-4">Apresentação dos trabalhos dos 480 alunos sobre sustentabilidade e cultura local.</p>
                 <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                    <i data-lucide="calendar" class="w-4 h-4 text-brand-blue"></i> Próximo mês
+                    <i data-lucide="calendar" class="w-4 h-4 text-brand-blue"></i> Calendário Letivo
                 </div>
             </div>
 
             <div class="bg-white border-l-4 border-brand-green p-6 rounded-2xl shadow-sm border-y border-r border-slate-200">
-                <span class="text-xs font-bold text-brand-green uppercase tracking-wide">Calendário</span>
+                <span class="text-xs font-bold text-brand-green uppercase tracking-wide">Comunidade</span>
                 <h4 class="font-bold text-lg mt-1 mb-2 text-slate-900">Reunião de Pais e Mestres</h4>
-                <p class="text-slate-600 text-sm mb-4">Encontro para entrega de boletins e alinhamento do rendimento escolar do trimestre.</p>
+                <p class="text-slate-600 text-sm mb-4">Encontro para entrega de boletins e acompanhamento do rendimento escolar.</p>
                 <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                    <i data-lucide="clock" class="w-4 h-4 text-brand-green"></i> Sexta-feira às 14h
+                    <i data-lucide="clock" class="w-4 h-4 text-brand-green"></i> Informe na Secretaria
                 </div>
             </div>
 
             <div class="bg-white border-l-4 border-brand-blue p-6 rounded-2xl shadow-sm border-y border-r border-slate-200">
-                <span class="text-xs font-bold text-brand-blue uppercase tracking-wide">Aviso Acadêmico</span>
-                <h4 class="font-bold text-lg mt-1 mb-2 text-slate-900">Inscrições e Rematrículas</h4>
-                <p class="text-slate-600 text-sm mb-4">Confira a documentação necessária na secretaria para atualização cadastral do ano letivo.</p>
+                <span class="text-xs font-bold text-brand-blue uppercase tracking-wide">Secretaria</span>
+                <h4 class="font-bold text-lg mt-1 mb-2 text-slate-900">Atualização Cadastral</h4>
+                <p class="text-slate-600 text-sm mb-4">Alunos e responsáveis devem manter e-mails e telefones atualizados junto à direção.</p>
                 <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                    <i data-lucide="file-text" class="w-4 h-4 text-brand-blue"></i> Secretaria da Escola
+                    <i data-lucide="file-text" class="w-4 h-4 text-brand-blue"></i> Secretaria SEED-PR
                 </div>
             </div>
         </div>
@@ -254,34 +281,48 @@
     <footer id="contato" class="bg-slate-900 text-white mt-auto pt-12 pb-8 border-t-4 border-brand-yellow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- Informações Institucionais -->
                 <div>
                     <h4 class="font-bold text-lg mb-3 text-brand-gold">C.E.C. Irmã Ambrósia Sabatovich</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Educação de excelência, valorizando a vida no campo e o futuro dos nossos estudantes na área rural de São José dos Pinhais - PR.
+                    <p class="text-slate-400 text-sm leading-relaxed mb-3">
+                        Educação de excelência para nossos <strong>480 alunos</strong>, valorizando a vida no campo e o desenvolvimento da comunidade rural de São José dos Pinhais - PR.
                     </p>
                 </div>
 
+                <!-- Contatos Atualizados -->
                 <div>
-                    <h4 class="font-bold text-lg mb-3 text-white">Localização & Contato</h4>
-                    <ul class="space-y-2 text-sm text-slate-400">
+                    <h4 class="font-bold text-lg mb-3 text-white">Contato & Endereço</h4>
+                    <ul class="space-y-3 text-sm text-slate-300">
                         <li class="flex items-start gap-2">
                             <i data-lucide="map-pin" class="w-4 h-4 text-brand-yellow shrink-0 mt-1"></i>
                             <span>Colônia Marcelino, São José dos Pinhais - PR</span>
                         </li>
                         <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-brand-yellow shrink-0"></i>
+                            <a href="mailto:sjp.ambrosia.sabatovich@escola.pr.gov.br" class="hover:underline text-blue-300 break-all">
+                                sjp.ambrosia.sabatovich@escola.pr.gov.br
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-2">
                             <i data-lucide="phone" class="w-4 h-4 text-brand-yellow shrink-0"></i>
-                            <span>Secretaria Escolar / SEED-PR</span>
+                            <a href="tel:4198320153" class="hover:underline text-blue-300">
+                                (41) 98320-153
+                            </a>
                         </li>
                     </ul>
                 </div>
 
+                <!-- Identidade Visual -->
                 <div>
-                    <h4 class="font-bold text-lg mb-3 text-white">Cores Institucionais</h4>
-                    <div class="flex gap-2">
-                        <div class="w-8 h-8 rounded-full bg-brand-blue border border-white/20" title="Azul Marinho (#1e3a8a)"></div>
-                        <div class="w-8 h-8 rounded-full bg-brand-green border border-white/20" title="Verde Campo (#15803d)"></div>
-                        <div class="w-8 h-8 rounded-full bg-brand-yellow border border-white/20" title="Amarelo Dourado (#eab308)"></div>
+                    <h4 class="font-bold text-lg mb-3 text-white">Cores Oficiais da Logo</h4>
+                    <div class="flex gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-brand-blue border border-white/20 shadow" title="Azul Marinho (#1e3a8a)"></div>
+                        <div class="w-8 h-8 rounded-full bg-brand-green border border-white/20 shadow" title="Verde Campo (#15803d)"></div>
+                        <div class="w-8 h-8 rounded-full bg-brand-yellow border border-white/20 shadow" title="Amarelo Dourado (#eab308)"></div>
                     </div>
+                    <p class="text-xs text-slate-400">
+                        Rede Estadual de Ensino do Paraná (SEED-PR).
+                    </p>
                 </div>
             </div>
 
@@ -291,7 +332,7 @@
         </div>
     </footer>
 
-    <!-- Arquivo JavaScript Externo -->
+    <!-- JavaScript Externo -->
     <script src="script.js"></script>
 </body>
 </html>

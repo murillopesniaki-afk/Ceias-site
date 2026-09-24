@@ -1,7 +1,6 @@
-// Aguarda o carregamento do DOM antes de rodar os scripts
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Inicializa os Ícones do Lucide
+    // Inicializa os Ícones Lucide
     if (window.lucide) {
         lucide.createIcons();
     }
@@ -16,13 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Gerador de Prompts de IA ---
+    // --- Gerador de Prompts de IA da Escola ---
     const btnGenerate = document.getElementById('btn-generate');
     const btnCopy = document.getElementById('btn-copy');
     const resultBox = document.getElementById('result-box');
     const generatedPromptText = document.getElementById('generated-prompt-text');
 
-    // Função para Gerar o Prompt
     function generatePrompt() {
         const userRole = document.getElementById('user-role').value;
         const promptGoal = document.getElementById('prompt-goal').value;
@@ -30,20 +28,24 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const topic = topicInput !== "" ? topicInput : 'o conteúdo das aulas';
 
-        // Monta o texto do prompt com as informações institucionais da escola
-        const promptTemplate = `Você é um assistente educacional especializado. Atue como tutor para um ${userRole} do Colégio Estadual do Campo Irmã Ambrósia Sabatovich (localizado na Colônia Marcelino, São José dos Pinhais - PR).
+        // Prompt detalhado com informações reais da escola (480 alunos, contatos, local)
+        const promptTemplate = `Você é um assistente educacional especializado. Atue como tutor pedagógico para um ${userRole} do Colégio Estadual do Campo Irmã Ambrósia Sabatovich.
 
-Objetivo: ${promptGoal}.
+Informações de Contexto da Escola:
+- Localização: Colônia Marcelino, São José dos Pinhais - PR.
+- Modalidade: Educação do Campo (Rede Estadual SEED-PR).
+- Comunidade: 480 alunos matriculados nos níveis de Ensino Fundamental II e Ensino Médio.
+- Contato oficial: sjp.ambrosia.sabatovich@escola.pr.gov.br | Tel: (41) 98320-153.
+
+Objetivo da Solicitação: ${promptGoal}.
 Tópico/Matéria: ${topic}.
 
-Por favor, forneça uma resposta clara, didática e motivadora, levando em consideração o contexto da Educação do Campo quando relevante. Organize as informações em tópicos curtos e de fácil compreensão.`;
+Por favor, forneça uma resposta clara, pedagógica e motivadora, levando em consideração o contexto da Educação do Campo quando relevante. Organize as informações em tópicos curtos e de fácil compreensão.`;
 
-        // Exibe o texto e a caixa de resultado
         generatedPromptText.innerText = promptTemplate;
         resultBox.classList.remove('hidden');
     }
 
-    // Função para Copiar para a Área de Transferência
     function copyPrompt() {
         const textToCopy = generatedPromptText.innerText;
 
@@ -59,7 +61,6 @@ Por favor, forneça uma resposta clara, didática e motivadora, levando em consi
         });
     }
 
-    // Event Listeners dos botões
     if (btnGenerate) {
         btnGenerate.addEventListener('click', generatePrompt);
     }
