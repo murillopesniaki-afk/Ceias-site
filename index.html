@@ -1,128 +1,297 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Escolar Inclusivo</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colégio Estadual do Campo Irmã Ambrósia Sabatovich</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1e3a8a',    /* Azul Marinho */
+                            lightBlue: '#3b82f6',
+                            green: '#15803d',   /* Verde Campo */
+                            yellow: '#eab308',  /* Amarelo Dourado */
+                            gold: '#facc15'     /* Amarelo Solar */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #15803d 100%);
+        }
+        .hero-pattern {
+            background-image: radial-gradient(rgba(250, 204, 21, 0.2) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen">
 
-  <header>
-    <h1> Irma Ambrosia Country School</h1>
-    <p class="tagline">Conhecimento, Inclusão e Tecnologia ao alcance de todos</p>
-   
-    <nav class="nav-buttons">
-      <button class="nav-btn active" onclick="showPage('inicio')">Início</button>
-      <button class="nav-btn" onclick="showPage('conceitos')">Conceitos</button>
-      <button class="nav-btn" onclick="showPage('informacoes')">Informações</button>
-      <button class="nav-btn" onclick="showPage('interativo')">Laboratório p5.js</button>
-    </nav>
-  </header>
+    <!-- HEADER / NAVEGAÇÃO -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- LOGO DA ESCOLA -->
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center text-brand-gold border-2 border-brand-yellow font-bold text-xl shadow-md">
+                        <i data-lucide="graduation-cap" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight text-brand-blue">C.E.C. Irmã Ambrósia Sabatovich</h1>
+                        <p class="text-xs text-brand-green font-medium">Educação do Campo • Colônia Marcelino - SJP</p>
+                    </div>
+                </div>
 
-  <main>
-    <section id="inicio" class="tab-content active">
-      <div class="card">
-        <h2>Bem-vindo ao Nosso Portal</h2>
-        <p>A Escola do Futuro foi desenvolvida com foco total em acessibilidade e responsividade. Nosso objetivo é disponibilizar conteúdo didático, materiais de apoio e simulações científicas interativas para estudantes, pais e professores.</p>
-      </div>
+                <!-- MENU NAVEGAÇÃO DESKTOP -->
+                <nav class="hidden md:flex items-center gap-6 font-medium text-slate-600">
+                    <a href="#inicio" class="hover:text-brand-blue transition">Início</a>
+                    <a href="#sobre" class="hover:text-brand-blue transition">Sobre a Escola</a>
+                    <a href="#avisos" class="hover:text-brand-blue transition">Mural</a>
+                    <a href="#prompt-generator" class="hover:text-brand-blue transition flex items-center gap-1 text-brand-blue font-semibold bg-brand-yellow/10 px-3 py-1.5 rounded-lg border border-brand-yellow/30">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-brand-yellow"></i>
+                        Gerador de Prompts
+                    </a>
+                    <a href="#contato" class="bg-brand-blue text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition shadow">Contato</a>
+                </nav>
 
-      <div class="grid-container">
-        <div class="card">
-          <h3>Acessibilidade Universal</h3>
-          <p>Plataforma adaptável a qualquer dispositivo: celulares, tablets, leitores de tela e computadores.</p>
+                <!-- BOTÃO MENU MOBILE -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
-        <div class="card">
-          <h3>Inovação Pedagógica</h3>
-          <p>Aulas dinâmicas com simulações visuais para facilitar a assimilação de conceitos complexos.</p>
+
+        <!-- MENU MOBILE -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <a href="#inicio" class="block py-2 text-slate-700 hover:text-brand-blue">Início</a>
+            <a href="#sobre" class="block py-2 text-slate-700 hover:text-brand-blue">Sobre a Escola</a>
+            <a href="#avisos" class="block py-2 text-slate-700 hover:text-brand-blue">Mural</a>
+            <a href="#prompt-generator" class="block py-2 text-brand-blue font-semibold">Gerador de Prompts IA</a>
+            <a href="#contato" class="block py-2 text-slate-700 hover:text-brand-blue">Contato</a>
         </div>
-      </div>
-    </section>
+    </header>
 
-    <section id="conceitos" class="tab-content">
-      <div class="card">
-        <h2>Conceitos Pedagógicos e Científicos</h2>
-        <p>Explores as metodologias aplicadas em nossa instituição para promover o aprendizado contínuo.</p>
-      </div>
-
-      <div class="card">
-        <h3>1. Aprendizagem Ativa</h3>
-        <p>Os alunos constroem o conhecimento por meio de resolução de problemas reais, experimentos e projetos colaborativos, deixando de ser apenas ouvintes passivos.</p>
-      </div>
-
-      <div class="card">
-        <h3>2. Pensamento Computacional</h3>
-        <p>Integramos lógica, algoritmos e programação de forma transversal em disciplinas como Matemática, Física e Artes.</p>
-      </div>
-
-      <div class="card">
-        <h3>3. Design Universal para a Aprendizagem (DUA)</h3>
-        <p>Garantimos múltiplos meios de engajamento, representação e expressão para que todos os estudantes aprendam sem barreiras.</p>
-      </div>
-    </section>
-
-    <section id="informacoes" class="tab-content">
-      <div class="card">
-        <h2>Informações Gerais e Quadro de Horários</h2>
-        <p>Confira os dados de funcionamento, calendário e modalidades de ensino ofertadas.</p>
-      </div>
-
-      <div class="card">
-        <h3>Quadro de Modalidades</h3>
-        <div class="table-responsive">
-          <table>
-            <thead>
-              <tr>
-                <th>Nível de Ensino</th>
-                <th>Turno</th>
-                <th>Foco Principal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Ensino Fundamental II</td>
-                <td>Manhã / Tarde</td>
-                <td>Base Científica e Leitura Crítica</td>
-              </tr>
-              <tr>
-                <td>Ensino Médio Técnico</td>
-                <td>Integral</td>
-                <td>Tecnologia, Programação e Projetos</td>
-              </tr>
-              <tr>
-                <td>Educação de Jovens e Adultos (EJA)</td>
-                <td>Noite</td>
-                <td>Inclusão Digital e Qualificação</td>
-              </tr>
-            </tbody>
-          </table>
+    <!-- HERO SECTION -->
+    <section id="inicio" class="gradient-bg hero-pattern text-white py-20 px-4 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <span class="inline-block bg-brand-yellow text-slate-900 text-xs uppercase font-bold tracking-wider px-3 py-1 rounded-full mb-4 shadow">
+                São José dos Pinhais - PR
+            </span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
+                Valorizando a Educação do Campo e o Conhecimento
+            </h2>
+            <p class="text-lg md:text-xl text-slate-100 mb-8 max-w-2xl mx-auto font-light">
+                O Colégio Estadual do Campo Irmã Ambrósia Sabatovich promove um ensino de qualidade integrado às tradições, comunidade e tecnologias modernas.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#prompt-generator" class="bg-brand-gold text-slate-900 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-yellow-400 transition flex items-center gap-2">
+                    <i data-lucide="bot" class="w-5 h-5"></i>
+                    Criar Prompt para IA
+                </a>
+                <a href="#sobre" class="bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold px-6 py-3 rounded-xl border border-white/20 transition">
+                    Conhecer a Escola
+                </a>
+            </div>
         </div>
-      </div>
-
-      <div class="card">
-        <h3>Canais de Atendimento</h3>
-        <ul>
-          <li><strong>Secretaria:</strong> segunda a sexta, das 07h às 19h</li>
-          <li><strong>Atendimento Online:</strong> suporte24h@escoladofuturo.edu.br</li>
-          <li><strong>Biblioteca Digital:</strong> Acesso livre para alunos matriculados</li>
-        </ul>
-      </div>
     </section>
 
-    <section id="interativo" class="tab-content">
-      <div class="card">
-        <h2>Laboratório Virtual Interativo</h2>
-        <p>Exemplo de simulação visual desenvolvida em JavaScript para estudo de física/geometria. Mova o mouse ou toque na tela para interagir com o elemento visual.</p>
-        <div id="canvas-container"></div>
-      </div>
+    <!-- SOBRE A ESCOLA -->
+    <section id="sobre" class="py-16 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h3 class="text-2xl md:text-3xl font-bold text-brand-blue">Sobre Nossa Instituição</h3>
+            <div class="w-20 h-1 bg-brand-yellow mx-auto mt-2 rounded-full"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-brand-blue/10 rounded-xl flex items-center justify-center text-brand-blue mb-4">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-xl font-semibold mb-2 text-slate-900">Ensino de Qualidade</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Atendimento do Ensino Fundamental II e Ensino Médio, unindo a matriz curricular do estado do Paraná com valorizações da vida no campo.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-brand-green/10 rounded-xl flex items-center justify-center text-brand-green mb-4">
+                    <i data-lucide="sprout" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-xl font-semibold mb-2 text-slate-900">Identidade do Campo</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Localizado na tradicional Colônia Marcelino, respeitamos e valorizamos a cultura local, sustentabilidade e desenvolvimento comunitário.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-brand-yellow/20 rounded-xl flex items-center justify-center text-amber-600 mb-4">
+                    <i data-lucide="cpu" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-xl font-semibold mb-2 text-slate-900">Tecnologia & Futuro</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Incentivamos nossos alunos no uso consciente de ferramentas digitais e Inteligência Artificial para estudos e pesquisas escolares.
+                </p>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2026 Irma ambrosia — Plataforma Educacional Aberta e Responsiva. eu e o brayan</p>
-  </footer>
+    <!-- FERRAMENTA INTERATIVA: GERADOR DE PROMPTS DE IA -->
+    <section id="prompt-generator" class="py-16 bg-slate-100 border-y border-slate-200 px-4">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
+            <div class="bg-brand-blue text-white p-6 md:p-8 relative">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="p-2 bg-brand-yellow/20 rounded-lg text-brand-gold">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                    </span>
+                    <h3 class="text-2xl font-bold">Gerador de Prompts Escolares (IA)</h3>
+                </div>
+                <p class="text-blue-100 text-sm">
+                    Monte instruções (prompts) personalizadas contendo as informações da escola para usar no ChatGPT, Gemini ou outras IAs em seus trabalhos e estudos.
+                </p>
+            </div>
 
-  <script src="sketch.js"></script>
+            <div class="p-6 md:p-8 space-y-6">
+                <!-- FORMULÁRIO -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Perfil do Solicitante</label>
+                        <select id="user-role" class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                            <option value="Aluno do Ensino Fundamental">Aluno (Ensino Fundamental)</option>
+                            <option value="Aluno do Ensino Médio">Aluno (Ensino Médio)</option>
+                            <option value="Professor / Educador">Professor / Educador</option>
+                            <option value="Comunidade / Responsável">Comunidade / Responsável</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Objetivo da Tarefa</label>
+                        <select id="prompt-goal" class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                            <option value="Explicar um assunto de aula com exemplos do cotidiano rural">Explicar assunto com exemplos rurais</option>
+                            <option value="Criar um roteiro de trabalho sobre história e cultura regional">Pesquisa/Trabalho sobre cultura regional</option>
+                            <option value="Elaborar um plano de estudo para provas">Plano de Estudo para Provas</option>
+                            <option value="Sugerir um projeto sustentável para o colégio">Ideia de Projeto Sustentável</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Matéria ou Tópico Específico</label>
+                    <input type="text" id="topic-input" placeholder="Ex: Fotossíntese, História do Paraná, Matemática Financeira..." class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                </div>
+
+                <button id="btn-generate" class="w-full bg-brand-green text-white font-bold py-3.5 rounded-xl hover:bg-green-800 transition flex items-center justify-center gap-2 shadow-md">
+                    <i data-lucide="wand-2" class="w-5 h-5"></i>
+                    Gerar Prompt Personalizado
+                </button>
+
+                <!-- RESULTADO -->
+                <div id="result-box" class="mt-6 hidden">
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="text-xs font-bold text-slate-700 uppercase">Seu Prompt Gerado Pronto para Copiar:</label>
+                        <button id="btn-copy" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-3 py-1 rounded-lg flex items-center gap-1 transition">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span id="copy-text">Copiar</span>
+                        </button>
+                    </div>
+                    <div class="bg-slate-900 text-slate-100 p-4 rounded-2xl font-mono text-sm leading-relaxed relative border border-slate-800">
+                        <p id="generated-prompt-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MURAL DE AVISOS -->
+    <section id="avisos" class="py-16 px-4 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+            <div>
+                <h3 class="text-2xl md:text-3xl font-bold text-brand-blue">Mural Recados & Avisos</h3>
+                <p class="text-slate-600 text-sm mt-1">Fique por dentro das últimas novidades da nossa comunidade escolar.</p>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white border-l-4 border-brand-yellow p-6 rounded-2xl shadow-sm border-y border-r border-slate-200">
+                <span class="text-xs font-bold text-amber-600 uppercase tracking-wide">Evento Cultural</span>
+                <h4 class="font-bold text-lg mt-1 mb-2 text-slate-900">Feira do Campo e do Conhecimento</h4>
+                <p class="text-slate-600 text-sm mb-4">Apresentação dos trabalhos desenvolvidos pelos alunos sobre sustentabilidade e tradições regionais.</p>
+                <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                    <i data-lucide="calendar" class="w-4 h-4 text-brand-blue"></i> Próximo mês
+                </div>
+            </div>
+
+            <div class="bg-white border-l-4 border-brand-green p-6 rounded-2xl shadow-sm border-y border-r border-slate-200">
+                <span class="text-xs font-bold text-brand-green uppercase tracking-wide">Calendário</span>
+                <h4 class="font-bold text-lg mt-1 mb-2 text-slate-900">Reunião de Pais e Mestres</h4>
+                <p class="text-slate-600 text-sm mb-4">Encontro para entrega de boletins e alinhamento do rendimento escolar do trimestre.</p>
+                <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                    <i data-lucide="clock" class="w-4 h-4 text-brand-green"></i> Sexta-feira às 14h
+                </div>
+            </div>
+
+            <div class="bg-white border-l-4 border-brand-blue p-6 rounded-2xl shadow-sm border-y border-r border-slate-200">
+                <span class="text-xs font-bold text-brand-blue uppercase tracking-wide">Aviso Acadêmico</span>
+                <h4 class="font-bold text-lg mt-1 mb-2 text-slate-900">Inscrições e Rematrículas</h4>
+                <p class="text-slate-600 text-sm mb-4">Confira a documentação necessária na secretaria para atualização cadastral do ano letivo.</p>
+                <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                    <i data-lucide="file-text" class="w-4 h-4 text-brand-blue"></i> Secretaria da Escola
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTATO -->
+    <footer id="contato" class="bg-slate-900 text-white mt-auto pt-12 pb-8 border-t-4 border-brand-yellow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="font-bold text-lg mb-3 text-brand-gold">C.E.C. Irmã Ambrósia Sabatovich</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Educação de excelência, valorizando a vida no campo e o futuro dos nossos estudantes na área rural de São José dos Pinhais - PR.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-3 text-white">Localização & Contato</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-brand-yellow shrink-0 mt-1"></i>
+                            <span>Colônia Marcelino, São José dos Pinhais - PR</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-brand-yellow shrink-0"></i>
+                            <span>Secretaria Escolar / SEED-PR</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-3 text-white">Cores Institucionais</h4>
+                    <div class="flex gap-2">
+                        <div class="w-8 h-8 rounded-full bg-brand-blue border border-white/20" title="Azul Marinho (#1e3a8a)"></div>
+                        <div class="w-8 h-8 rounded-full bg-brand-green border border-white/20" title="Verde Campo (#15803d)"></div>
+                        <div class="w-8 h-8 rounded-full bg-brand-yellow border border-white/20" title="Amarelo Dourado (#eab308)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+                <p>&copy; Colégio Estadual do Campo Irmã Ambrósia Sabatovich. Desenvolvido para a comunidade escolar.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Arquivo JavaScript Externo -->
+    <script src="script.js"></script>
 </body>
 </html>
