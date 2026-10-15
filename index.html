@@ -1,380 +1,280 @@
-<!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colégio Estadual do Campo Irmã Ambrósia Sabatovich</title>
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            blue: '#1e3a8a',    /* Azul Marinho */
-                            lightBlue: '#3b82f6',
-                            green: '#15803d',   /* Verde Campo */
-                            yellow: '#eab308',  /* Amarelo Dourado */
-                            gold: '#facc15'     /* Amarelo Solar */
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #15803d 100%);
-        }
-        .hero-pattern {
-            background-image: radial-gradient(rgba(250, 204, 21, 0.2) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen">
 
-    <!-- HEADER / NAVEGAÇÃO -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- LOGO DA ESCOLA -->
-                <a href="#inicio" class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center text-brand-gold border-2 border-brand-yellow font-bold shadow-md">
-                        <i data-lucide="graduation-cap" class="w-7 h-7 text-brand-gold"></i>
-                    </div>
-                    <div>
-                        <h1 class="font-bold text-lg leading-tight text-brand-blue">C.E.C. Irmã Ambrósia Sabatovich</h1>
-                        <p class="text-xs text-brand-green font-medium">Educação do Campo • Colônia Marcelino - SJP</p>
-                    </div>
-                </a>
+document.addEventListener("DOMContentLoaded", () => {
+  // Ícones Lucide
+  function renderIcons() {
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  }
 
-                <!-- MENU NAVEGAÇÃO DESKTOP -->
-                <nav class="hidden lg:flex items-center gap-6 font-medium text-slate-600">
-                    <a href="#inicio" class="hover:text-brand-blue transition">Início</a>
-                    <a href="#estatisticas" class="hover:text-brand-blue transition">Números</a>
-                    <a href="#sobre" class="hover:text-brand-blue transition">Sobre</a>
-                    <a href="#professores" class="hover:text-brand-blue transition">Professores</a>
-                    <a href="#avisos" class="hover:text-brand-blue transition">Mural</a>
-                    <a href="#prompt-generator" class="hover:text-brand-blue transition flex items-center gap-1 text-brand-blue font-semibold bg-brand-yellow/10 px-3 py-1.5 rounded-lg border border-brand-yellow/30">
-                        <i data-lucide="sparkles" class="w-4 h-4 text-brand-yellow"></i>
-                        Gerador de Prompts
-                    </a>
-                    <a href="#contato" class="bg-brand-blue text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition shadow">Contato</a>
-                </nav>
+  renderIcons();
 
-                <!-- BOTÃO MENU MOBILE -->
-                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Abrir Menu">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-            </div>
-        </div>
+  // Menu mobile
+  const menuButton = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-        <!-- MENU MOBILE -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
-            <a href="#inicio" class="block py-2 text-slate-700 hover:text-brand-blue">Início</a>
-            <a href="#estatisticas" class="block py-2 text-slate-700 hover:text-brand-blue">Estatísticas</a>
-            <a href="#sobre" class="block py-2 text-slate-700 hover:text-brand-blue">Sobre a Escola</a>
-            <a href="#professores" class="block py-2 text-slate-700 hover:text-brand-blue">Professores</a>
-            <a href="#avisos" class="block py-2 text-slate-700 hover:text-brand-blue">Mural</a>
-            <a href="#prompt-generator" class="block py-2 text-brand-blue font-semibold">Gerador de Prompts IA</a>
-            <a href="#contato" class="block py-2 text-slate-700 hover:text-brand-blue">Contato</a>
-        </div>
-    </header>
+  if (menuButton && mobileMenu) {
+    menuButton.setAttribute("aria-expanded", "false");
 
-    <!-- HERO SECTION -->
-    <section id="inicio" class="gradient-bg hero-pattern text-white py-20 px-4 relative overflow-hidden">
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <span class="inline-block bg-brand-yellow text-slate-900 text-xs uppercase font-bold tracking-wider px-3 py-1 rounded-full mb-4 shadow">
-                São José dos Pinhais - PR • Colônia Marcelino
-            </span>
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
-                Valorizando a Educação do Campo e o Conhecimento
-            </h2>
-            <p class="text-lg md:text-xl text-slate-100 mb-8 max-w-2xl mx-auto font-light">
-                Atendendo <strong>480 alunos</strong> matriculados, o Colégio Estadual do Campo Irmã Ambrósia Sabatovich promove ensino de qualidade integrado à comunidade rural.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#prompt-generator" class="bg-brand-gold text-slate-900 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-yellow-400 transition flex items-center gap-2">
-                    <i data-lucide="bot" class="w-5 h-5"></i>
-                    Criar Prompt para IA
-                </a>
-                <a href="#contato" class="bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold px-6 py-3 rounded-xl border border-white/20 transition">
-                    Fale Conosco
-                </a>
-            </div>
-        </div>
-    </section>
+    menuButton.addEventListener("click", () => {
+      const isOpening = mobileMenu.classList.contains("hidden");
 
-    <!-- PAINEL ESTATÍSTICO -->
-    <section id="estatisticas" class="py-10 bg-brand-blue text-white border-b border-brand-yellow/30">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
-                <div class="text-3xl md:text-4xl font-extrabold text-brand-gold">480</div>
-                <div class="text-xs uppercase font-semibold text-slate-300 mt-1">Alunos Atendidos</div>
-            </div>
-            <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
-                <div class="text-3xl md:text-4xl font-extrabold text-brand-gold">EF II e EM</div>
-                <div class="text-xs uppercase font-semibold text-slate-300 mt-1">Níveis de Ensino</div>
-            </div>
-            <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
-                <div class="text-3xl md:text-4xl font-extrabold text-brand-gold">SEED-PR</div>
-                <div class="text-xs uppercase font-semibold text-slate-300 mt-1">Rede Estadual</div>
-            </div>
-            <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
-                <div class="text-3xl md:text-4xl font-extrabold text-brand-gold">Campo</div>
-                <div class="text-xs uppercase font-semibold text-slate-300 mt-1">Modalidade</div>
-            </div>
-        </div>
-    </section>
+      mobileMenu.classList.toggle("hidden");
+      menuButton.setAttribute("aria-expanded", String(isOpening));
+      menuButton.setAttribute(
+        "aria-label",
+        isOpening ? "Fechar menu" : "Abrir menu"
+      );
 
-    <!-- SOBRE A ESCOLA -->
-    <section id="sobre" class="py-16 px-4 max-w-7xl mx-auto">
-        <div class="text-center mb-12">
-            <h3 class="text-2xl md:text-3xl font-bold text-brand-blue">Sobre Nossa Instituição</h3>
-            <div class="w-20 h-1 bg-brand-yellow mx-auto mt-2 rounded-full"></div>
-        </div>
+      menuButton.innerHTML = isOpening
+        ? '<i data-lucide="x" class="w-6 h-6"></i>'
+        : '<i data-lucide="menu" class="w-6 h-6"></i>';
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
-                <div class="w-12 h-12 bg-brand-blue/10 rounded-xl flex items-center justify-center text-brand-blue mb-4">
-                    <i data-lucide="users" class="w-6 h-6"></i>
-                </div>
-                <h4 class="text-xl font-semibold mb-2 text-slate-900">480 Estudantes</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    Atendimento dedicado aos alunos do Ensino Fundamental II e Ensino Médio residentes na região rural de São José dos Pinhais.
-                </p>
-            </div>
+      renderIcons();
+    });
 
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
-                <div class="w-12 h-12 bg-brand-green/10 rounded-xl flex items-center justify-center text-brand-green mb-4">
-                    <i data-lucide="sprout" class="w-6 h-6"></i>
-                </div>
-                <h4 class="text-xl font-semibold mb-2 text-slate-900">Educação do Campo</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    Localizado na tradicional Colônia Marcelino, o colégio integra o currículo escolar à valorização das raízes, agricultura familiar e sustentabilidade.
-                </p>
-            </div>
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Abrir menu");
+        menuButton.innerHTML =
+          '<i data-lucide="menu" class="w-6 h-6"></i>';
+        renderIcons();
+      });
+    });
+  }
 
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
-                <div class="w-12 h-12 bg-brand-yellow/20 rounded-xl flex items-center justify-center text-amber-600 mb-4">
-                    <i data-lucide="cpu" class="w-6 h-6"></i>
-                </div>
-                <h4 class="text-xl font-semibold mb-2 text-slate-900">Tecnologia & Inovação</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    Incentivo ao uso pedagógico de Inteligência Artificial e ferramentas digitais para apoio às pesquisas e estudos dos alunos.
-                </p>
-            </div>
-        </div>
-    </section>
+  // Corpo docente
+  // Substitua os exemplos abaixo pelos dados reais da escola.
+  const teachers = [
+    {
+      name: "Professor(a) de Língua Portuguesa",
+      subject: "Português",
+      description: "Língua Portuguesa e produção textual."
+    },
+    {
+      name: "Professor(a) de Matemática",
+      subject: "Matemática",
+      description: "Raciocínio lógico e resolução de problemas."
+    },
+    {
+      name: "Professor(a) de Ciências",
+      subject: "Ciências / Biologia",
+      description: "Ciências da natureza e sustentabilidade."
+    },
+    {
+      name: "Professor(a) de História",
+      subject: "História",
+      description: "História, cultura e sociedade."
+    },
+    {
+      name: "Professor(a) de Geografia",
+      subject: "Geografia",
+      description: "Território, paisagem e espaço geográfico."
+    },
+    {
+      name: "Professor(a) de Física e Química",
+      subject: "Física / Química",
+      description: "Fenômenos naturais e experimentação."
+    },
+    {
+      name: "Professor(a) de Educação Física",
+      subject: "Educação Física",
+      description: "Movimento, esporte e qualidade de vida."
+    },
+    {
+      name: "Professor(a) de Inglês",
+      subject: "Inglês",
+      description: "Língua inglesa e comunicação."
+    },
+    {
+      name: "Professor(a) de Artes",
+      subject: "Artes",
+      description: "Expressão artística e criatividade."
+    },
+    {
+      name: "Professor(a) de Filosofia e Sociologia",
+      subject: "Filosofia / Sociologia",
+      description: "Pensamento crítico e vida em sociedade."
+    },
+    {
+      name: "Professor(a) de Educação do Campo",
+      subject: "Agroecologia / Campo",
+      description: "Sustentabilidade e valorização da comunidade rural."
+    }
+  ];
 
-    <!-- NOVA SEÇÃO: PROFESSORES -->
-    <section id="professores" class="py-16 bg-slate-100 border-t border-slate-200 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-8">
-                <h3 class="text-2xl md:text-3xl font-bold text-brand-blue">Nosso Corpo Docente</h3>
-                <p class="text-slate-600 text-sm mt-2">Conheça os educadores do Colégio Irmã Ambrósia Sabatovich</p>
-                <div class="w-20 h-1 bg-brand-yellow mx-auto mt-2 rounded-full"></div>
-            </div>
+  const teacherGrid = document.getElementById("teachers-grid");
+  const teacherSearch = document.getElementById("teacher-search");
+  const teacherFilter = document.getElementById("teacher-filter");
+  const noTeachersFound = document.getElementById("no-teachers-found");
 
-            <!-- BARRA DE PESQUISA E FILTROS DE PROFESSORES -->
-            <div class="max-w-3xl mx-auto mb-8 flex flex-col sm:flex-row gap-4">
-                <div class="relative flex-1">
-                    <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-3 top-3.5"></i>
-                    <input type="text" id="teacher-search" placeholder="Buscar por nome do professor..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:outline-none text-sm">
-                </div>
-                <select id="teacher-filter" class="p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:outline-none text-sm bg-white">
-                    <option value="todos">Todas as Matérias</option>
-                    <option value="Português">Língua Portuguesa</option>
-                    <option value="Matemática">Matemática</option>
-                    <option value="Ciências / Biologia">Ciências / Biologia</option>
-                    <option value="História">História</option>
-                    <option value="Geografia">Geografia</option>
-                    <option value="Física / Química">Física / Química</option>
-                    <option value="Educação Física">Educação Física</option>
-                    <option value="Inglês">Inglês</option>
-                    <option value="Artes">Artes</option>
-                    <option value="Filosofia / Sociologia">Filosofia / Sociologia</option>
-                    <option value="Agroecologia / Campo">Agroecologia / Educação do Campo</option>
-                </select>
-            </div>
+  function renderTeachers() {
+    if (!teacherGrid) return;
 
-            <!-- GRID ONDE OS CARDS DOS PROFESSORES SERÃO RENDERIZADOS DINAMICAMENTE -->
-            <div id="teachers-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Os cards de professores serão injetados aqui via JS -->
-            </div>
+    const query = (teacherSearch?.value || "")
+      .trim()
+      .toLocaleLowerCase("pt-BR");
 
-            <!-- MENSAGEM QUANDO NENHUM PROFESSOR É ENCONTRADO -->
-            <div id="no-teachers-found" class="hidden text-center py-8 text-slate-500 text-sm">
-                Nenhum professor encontrado com os critérios digitados.
-            </div>
-        </div>
-    </section>
+    const subject = teacherFilter?.value || "todos";
 
-    <!-- GERADOR DE PROMPTS DE IA -->
-    <section id="prompt-generator" class="py-16 bg-white border-y border-slate-200 px-4">
-        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
-            <div class="bg-brand-blue text-white p-6 md:p-8 relative">
-                <div class="flex items-center gap-3 mb-2">
-                    <span class="p-2 bg-brand-yellow/20 rounded-lg text-brand-gold">
-                        <i data-lucide="sparkles" class="w-6 h-6"></i>
-                    </span>
-                    <h3 class="text-2xl font-bold">Gerador de Prompts Escolares (IA)</h3>
-                </div>
-                <p class="text-blue-100 text-sm">
-                    Monte instruções (prompts) personalizadas contendo as informações da escola para usar no ChatGPT, Gemini ou Copilot em seus trabalhos.
-                </p>
-            </div>
+    const filteredTeachers = teachers.filter((teacher) => {
+      const matchesName = teacher.name
+        .toLocaleLowerCase("pt-BR")
+        .includes(query);
 
-            <div class="p-6 md:p-8 space-y-6">
-                <!-- FORMULÁRIO -->
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Perfil do Solicitante</label>
-                        <select id="user-role" class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:outline-none">
-                            <option value="Aluno do Ensino Fundamental">Aluno (Ensino Fundamental)</option>
-                            <option value="Aluno do Ensino Médio">Aluno (Ensino Médio)</option>
-                            <option value="Professor / Educador">Professor / Educador</option>
-                            <option value="Comunidade / Responsável">Comunidade / Responsável</option>
-                        </select>
-                    </div>
+      const matchesSubject =
+        subject === "todos" || teacher.subject === subject;
 
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Objetivo da Tarefa</label>
-                        <select id="prompt-goal" class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:outline-none">
-                            <option value="Explicar um assunto de aula com exemplos do cotidiano rural">Explicar assunto com exemplos rurais</option>
-                            <option value="Criar um roteiro de trabalho sobre história e cultura regional">Pesquisa/Trabalho sobre cultura regional</option>
-                            <option value="Elaborar um plano de estudo para provas">Plano de Estudo para Provas</option>
-                            <option value="Sugerir um projeto sustentável para o colégio">Ideia de Projeto Sustentável</option>
-                        </select>
-                    </div>
-                </div>
+      return matchesName && matchesSubject;
+    });
 
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Matéria ou Tópico Específico</label>
-                    <input type="text" id="topic-input" placeholder="Ex: Fotossíntese, História do Paraná, Matemática Financeira..." class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:outline-none">
-                </div>
+    teacherGrid.replaceChildren();
 
-                <button id="btn-generate" class="w-full bg-brand-green text-white font-bold py-3.5 rounded-xl hover:bg-green-800 transition flex items-center justify-center gap-2 shadow-md">
-                    <i data-lucide="wand-2" class="w-5 h-5"></i>
-                    Gerar Prompt Personalizado
-                </button>
+    filteredTeachers.forEach((teacher) => {
+      const card = document.createElement("article");
+      card.className =
+        "bg-white p-6 rounded-2xl shadow-sm border border-slate-200 " +
+        "hover:shadow-lg hover:-translate-y-1 transition duration-300";
 
-                <!-- RESULTADO -->
-                <div id="result-box" class="mt-6 hidden">
-                    <div class="flex justify-between items-center mb-2">
-                        <label class="text-xs font-bold text-slate-700 uppercase">Seu Prompt Gerado Pronto para Copiar:</label>
-                        <button id="btn-copy" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-3 py-1 rounded-lg flex items-center gap-1 transition">
-                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                            <span id="copy-text">Copiar</span>
-                        </button>
-                    </div>
-                    <div class="bg-slate-900 text-slate-100 p-4 rounded-2xl font-mono text-sm leading-relaxed relative border border-slate-800">
-                        <p id="generated-prompt-text"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      const avatar = document.createElement("div");
+      avatar.className =
+        "w-14 h-14 rounded-2xl bg-blue-50 text-blue-800 " +
+        "flex items-center justify-center mb-4";
 
-    <!-- MURAL DE AVISOS -->
-    <section id="avisos" class="py-16 px-4 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
-            <div>
-                <h3 class="text-2xl md:text-3xl font-bold text-brand-blue">Mural Recados & Avisos</h3>
-                <p class="text-slate-600 text-sm mt-1">Fique por dentro das últimas novidades da nossa comunidade escolar.</p>
-            </div>
-        </div>
+      avatar.innerHTML =
+        '<i data-lucide="graduation-cap" class="w-7 h-7"></i>';
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white border-l-4 border-brand-yellow p-6 rounded-2xl shadow-sm border-y border-r border-slate-200">
-                <span class="text-xs font-bold text-amber-600 uppercase tracking-wide">Evento Cultural</span>
-                <h4 class="font-bold text-lg mt-1 mb-2 text-slate-900">Feira do Campo e do Conhecimento</h4>
-                <p class="text-slate-600 text-sm mb-4">Apresentação dos trabalhos dos 480 alunos sobre sustentabilidade e cultura local.</p>
-                <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                    <i data-lucide="calendar" class="w-4 h-4 text-brand-blue"></i> Calendário Letivo
-                </div>
-            </div>
+      const name = document.createElement("h4");
+      name.className = "font-bold text-slate-900 text-lg";
+      name.textContent = teacher.name;
 
-            <div class="bg-white border-l-4 border-brand-green p-6 rounded-2xl shadow-sm border-y border-r border-slate-200">
-                <span class="text-xs font-bold text-brand-green uppercase tracking-wide">Comunidade</span>
-                <h4 class="font-bold text-lg mt-1 mb-2 text-slate-900">Reunião de Pais e Mestres</h4>
-                <p class="text-slate-600 text-sm mb-4">Encontro para entrega de boletins e acompanhamento do rendimento escolar.</p>
-                <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                    <i data-lucide="clock" class="w-4 h-4 text-brand-green"></i> Informe na Secretaria
-                </div>
-            </div>
+      const subjectLabel = document.createElement("p");
+      subjectLabel.className =
+        "inline-block mt-2 mb-3 text-xs font-semibold " +
+        "text-green-800 bg-green-50 rounded-full px-3 py-1";
+      subjectLabel.textContent = teacher.subject;
 
-            <div class="bg-white border-l-4 border-brand-blue p-6 rounded-2xl shadow-sm border-y border-r border-slate-200">
-                <span class="text-xs font-bold text-brand-blue uppercase tracking-wide">Secretaria</span>
-                <h4 class="font-bold text-lg mt-1 mb-2 text-slate-900">Atualização Cadastral</h4>
-                <p class="text-slate-600 text-sm mb-4">Alunos e responsáveis devem manter e-mails e telefones atualizados junto à direção.</p>
-                <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                    <i data-lucide="file-text" class="w-4 h-4 text-brand-blue"></i> Secretaria SEED-PR
-                </div>
-            </div>
-        </div>
-    </section>
+      const description = document.createElement("p");
+      description.className = "text-sm text-slate-600 leading-relaxed";
+      description.textContent = teacher.description;
 
-    <!-- FOOTER / CONTATO -->
-    <footer id="contato" class="bg-slate-900 text-white mt-auto pt-12 pb-8 border-t-4 border-brand-yellow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <!-- Informações Institucionais -->
-                <div>
-                    <h4 class="font-bold text-lg mb-3 text-brand-gold">C.E.C. Irmã Ambrósia Sabatovich</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-3">
-                        Educação de excelência para nossos <strong>480 alunos</strong>, valorizando a vida no campo e o desenvolvimento da comunidade rural de São José dos Pinhais - PR.
-                    </p>
-                </div>
+      card.append(avatar, name, subjectLabel, description);
+      teacherGrid.appendChild(card);
+    });
 
-                <!-- Contatos Atualizados -->
-                <div>
-                    <h4 class="font-bold text-lg mb-3 text-white">Contato & Endereço</h4>
-                    <ul class="space-y-3 text-sm text-slate-300">
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="map-pin" class="w-4 h-4 text-brand-yellow shrink-0 mt-1"></i>
-                            <span>Colônia Marcelino, São José dos Pinhais - PR</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="mail" class="w-4 h-4 text-brand-yellow shrink-0"></i>
-                            <a href="mailto:sjp.ambrosia.sabatovich@escola.pr.gov.br" class="hover:underline text-blue-300 break-all">
-                                sjp.ambrosia.sabatovich@escola.pr.gov.br
-                            </a>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="phone" class="w-4 h-4 text-brand-yellow shrink-0"></i>
-                            <a href="tel:41998320153" class="hover:underline text-blue-300">
-                                (41) 99832-0153
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+    if (noTeachersFound) {
+      noTeachersFound.classList.toggle(
+        "hidden",
+        filteredTeachers.length > 0
+      );
+    }
 
-                <!-- Identidade Visual -->
-                <div>
-                    <h4 class="font-bold text-lg mb-3 text-white">Cores Oficiais da Logo</h4>
-                    <div class="flex gap-3 mb-4">
-                        <div class="w-8 h-8 rounded-full bg-brand-blue border border-white/20 shadow" title="Azul Marinho (#1e3a8a)"></div>
-                        <div class="w-8 h-8 rounded-full bg-brand-green border border-white/20 shadow" title="Verde Campo (#15803d)"></div>
-                        <div class="w-8 h-8 rounded-full bg-brand-yellow border border-white/20 shadow" title="Amarelo Dourado (#eab308)"></div>
-                    </div>
-                    <p class="text-xs text-slate-400">
-                        Rede Estadual de Ensino do Paraná (SEED-PR).
-                    </p>
-                </div>
-            </div>
+    renderIcons();
+  }
 
-            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
-                <p>&copy; Colégio Estadual do Campo Irmã Ambrósia Sabatovich. Desenvolvido para a comunidade escolar.</p>
-            </div>
-        </div>
-    </footer>
+  teacherSearch?.addEventListener("input", renderTeachers);
+  teacherFilter?.addEventListener("change", renderTeachers);
+  renderTeachers();
 
-    <!-- JavaScript Externo -->
-    <script src="script.js"></script>
-</body>
-</html>
+  // Gerador de prompts escolares
+  const roleInput = document.getElementById("user-role");
+  const goalInput = document.getElementById("prompt-goal");
+  const topicInput = document.getElementById("topic-input");
+  const generateButton = document.getElementById("btn-generate");
+  const resultBox = document.getElementById("result-box");
+  const generatedText = document.getElementById("generated-prompt-text");
+  const copyButton = document.getElementById("btn-copy");
+  const copyText = document.getElementById("copy-text");
+
+  generateButton?.addEventListener("click", () => {
+    const role = roleInput?.value || "Aluno do Ensino Fundamental";
+    const goal = goalInput?.value || "Explicar um assunto escolar";
+    const topic = topicInput?.value.trim();
+
+    if (!topic) {
+      topicInput?.focus();
+      topicInput?.setAttribute("aria-invalid", "true");
+      topicInput?.setCustomValidity(
+        "Digite uma matéria ou um tópico para gerar o prompt."
+      );
+      topicInput?.reportValidity();
+      return;
+    }
+
+    topicInput?.setAttribute("aria-invalid", "false");
+    topicInput?.setCustomValidity("");
+
+    const prompt = [
+      "Atue como um educador experiente, com linguagem clara, acolhedora e adequada ao nível de ensino.",
+      "",
+      "CONTEXTO:",
+      "Colégio Estadual do Campo Irmã Ambrósia Sabatovich, localizado na Colônia Marcelino, em São José dos Pinhais, Paraná.",
+      "Considere a realidade da comunidade rural, a agricultura familiar, a sustentabilidade e a cultura regional quando forem relevantes.",
+      "",
+      "PERFIL DO SOLICITANTE:",
+      role,
+      "",
+      "OBJETIVO:",
+      goal,
+      "",
+      "TEMA:",
+      topic,
+      "",
+      "ORIENTAÇÕES:",
+      "- Organize a resposta em tópicos e etapas.",
+      "- Explique os conceitos com exemplos práticos.",
+      "- Utilize linguagem apropriada ao perfil informado.",
+      "- Inclua atividades ou exemplos relacionados ao cotidiano quando fizer sentido.",
+      "- Ao mencionar fatos, apresente fontes confiáveis para consulta.",
+      "- Não invente dados, referências ou informações sobre a escola.",
+      "- Preserve a privacidade de estudantes, professores e familiares.",
+      "",
+      "Ao final, apresente uma breve síntese e sugestões para aprofundar o aprendizado."
+    ].join("\n");
+
+    if (generatedText) {
+      generatedText.textContent = prompt;
+    }
+
+    resultBox?.classList.remove("hidden");
+    if (copyText) copyText.textContent = "Copiar";
+    resultBox?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+  });
+
+  copyButton?.addEventListener("click", async () => {
+    const text = generatedText?.textContent || "";
+    if (!text) return;
+
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      // Alternativa para navegadores sem acesso à Clipboard API.
+      const temporary = document.createElement("textarea");
+      temporary.value = text;
+      temporary.setAttribute("readonly", "");
+      temporary.style.position = "fixed";
+      temporary.style.opacity = "0";
+      document.body.appendChild(temporary);
+      temporary.select();
+
+      const copied = document.execCommand("copy");
+      temporary.remove();
+
+      if (!copied) {
+        if (copyText) copyText.textContent = "Selecione e copie";
+        return;
+      }
+    }
+
+    if (copyText) copyText.textContent = "Copiado!";
+
+    window.setTimeout(() => {
+      if (copyText) copyText.textContent = "Copiar";
+    }, 2000);
+  });
+});
