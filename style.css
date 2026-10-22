@@ -1,210 +1,45 @@
 
-/* =========================================
-   INTEGRAÇÃO COM O SITE DO COLÉGIO
-   Tema futurista azul e ciano
-========================================= */
-
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
 }
 
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+/* Animação suave para quando a caixa de resultados for exibida */
+#result-box:not(.hidden) {
+  animation: fadeIn 0.3s ease-in-out forwards;
 }
 
-/* Cabeçalho original */
-header.sticky {
-  background: rgba(13, 27, 42, 0.94) !important;
-  border-color: var(--border-color) !important;
-  color: var(--text-color);
-}
-
-/* Textos institucionais */
-.text-brand-blue,
-.text-slate-900,
-.text-slate-800 {
-  color: var(--text-color) !important;
-}
-
-.text-slate-600,
-.text-slate-500,
-.text-slate-400 {
-  color: var(--text-muted) !important;
-}
-
-/* Seções */
-section,
-footer {
-  color: var(--text-color);
-}
-
-.bg-white,
-.bg-slate-50,
-.bg-slate-100 {
-  background-color: var(--bg-color) !important;
-}
-
-.bg-brand-blue {
-  background-color: var(--primary-color) !important;
-}
-
-.bg-brand-green {
-  background-color: #123d3b !important;
-}
-
-/* Cartões */
-#sobre article,
-#sobre .bg-white,
-#professores article,
-#teachers-grid article,
-#prompt-generator > div,
-#avisos .bg-white {
-  background: var(--card-bg) !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
-  transition: transform 0.25s ease,
-              border-color 0.25s ease,
-              box-shadow 0.25s ease;
-}
-
-#sobre .bg-white:hover,
-#teachers-grid article:hover,
-#avisos .bg-white:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent-blue) !important;
-  box-shadow: 0 8px 25px rgba(0, 240, 255, 0.12);
-}
-
-/* Títulos */
-h2,
-h3 {
-  color: var(--accent-blue);
-}
-
-/* Campos de pesquisa e formulários */
-input,
-select,
-textarea {
-  background: #111b2b !important;
-  color: var(--text-color) !important;
-  border-color: var(--border-color) !important;
-  border-radius: 10px;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--text-muted);
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 2px solid var(--accent-blue);
-  outline-offset: 2px;
-  border-color: var(--accent-blue) !important;
-}
-
-/* Botões */
-button {
-  transition: background-color 0.2s ease,
-              color 0.2s ease,
-              box-shadow 0.2s ease,
-              transform 0.2s ease;
-}
-
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--accent-blue);
-  outline-offset: 4px;
-}
-
-/* Botões principais */
-#btn-generate,
-#contato a.bg-brand-blue {
-  background: #087f8c !important;
-  color: white !important;
-}
-
-#btn-generate:hover {
-  background: #00a6b5 !important;
-  box-shadow: 0 0 18px var(--neon-glow);
-}
-
-/* Imagens dos professores */
-#teachers-grid img {
-  transition: transform 0.4s ease;
-}
-
-#teachers-grid article:hover img {
-  transform: scale(1.04);
-}
-
-/* Prompt gerado */
-#generated-prompt-text {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  color: #d8faff;
-}
-
-/* Mural */
-#avisos article,
-#avisos .bg-white {
-  border-left-color: var(--accent-blue) !important;
-}
-
-/* Navegação mobile */
-#mobile-menu {
-  background: #0d1b2a !important;
-  border-color: var(--border-color) !important;
-}
-
-#mobile-menu a {
-  display: block;
-  padding: 12px;
-  border-radius: 8px;
-}
-
-#mobile-menu a:hover {
-  background: rgba(0, 240, 255, 0.08);
-  color: var(--accent-blue);
-}
-
-/* Reduz efeitos para quem prefere menos movimento */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Ajustes para celulares */
-@media (max-width: 600px) {
-  body {
-    padding: 0;
-  }
+/* Estilização para o estado de erro de validação do campo do tema */
+#topic-input[aria-invalid="true"] {
+  border-color: #ef4444;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
 
-  #teachers-grid {
-    grid-template-columns: 1fr;
-  }
+/* Customização do scrollbar na caixa de texto do resultado */
+#generated-prompt-text::-webkit-scrollbar {
+  width: 6px;
+}
 
-  #sobre,
-  #professores,
-  #avisos,
-  #prompt-generator {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
+#generated-prompt-text::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-  #teachers-grid article:hover,
-  #sobre .bg-white:hover,
-  #avisos .bg-white:hover {
-    transform: none;
-  }
+#generated-prompt-text::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+#generated-prompt-text::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
