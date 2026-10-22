@@ -1,17 +1,28 @@
-
 html {
   scroll-behavior: smooth;
 }
 
-/* Animação suave para quando a caixa de resultados for exibida */
-#result-box:not(.hidden) {
-  animation: fadeIn 0.3s ease-in-out forwards;
+/* Estilo dos botões da barra de navegação */
+.nav-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-btn:hover {
+  background-color: #f1f5f9;
+  color: #047857;
+}
+
+/* Transição de entrada das seções */
+.tab-content {
+  animation: fadeIn 0.25s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(4px);
   }
   to {
     opacity: 1;
@@ -19,27 +30,12 @@ html {
   }
 }
 
-/* Estilização para o estado de erro de validação do campo do tema */
-#topic-input[aria-invalid="true"] {
-  border-color: #ef4444;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
-}
-
-/* Customização do scrollbar na caixa de texto do resultado */
+/* Personalização da barra de rolagem da caixa do prompt */
 #generated-prompt-text::-webkit-scrollbar {
   width: 6px;
 }
 
-#generated-prompt-text::-webkit-scrollbar-track {
-  background: transparent;
-}
-
 #generated-prompt-text::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 9999px;
-}
-
-#generated-prompt-text::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  border-radius: 4px;
 }
