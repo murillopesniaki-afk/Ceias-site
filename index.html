@@ -3,69 +3,159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Colégio Estadual do Campo Irmã Ambrósia Sabatovich</title>
+  <title>Gazeta Escolar - Irmã Ambrósia Sabatovich</title>
  
   <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
- 
+  <script src="https://cdn.tailwindcss.com"></script>  
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
- 
+  <script src="https://unpkg.com/lucide@latest"></script>  
   <!-- Estilos Customizados -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
 
-  <!-- Cabeçalho & Navegação -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <h1 class="text-xl font-bold text-slate-900">
-        Colégio Irmã Ambrósia Sabatovich
-      </h1>
+  <!-- Cabeçalho em Estilo Jornalístico -->
+  <header class="bg-white border-b-4 border-emerald-700 shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div class="flex items-center gap-3">
+          <!-- Botão Voltar Ativo quando dentro de uma aba específica -->
+          <button id="btn-back" class="hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition" aria-label="Voltar à página inicial">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          </button>
+          <div>
+            <span class="text-xs font-semibold tracking-widest uppercase text-emerald-700">Edição Digital</span>
+            <h1 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Gazeta do Campo</h1>
+          </div>
+        </div>
 
-      <!-- Botão Menu Mobile -->
-      <button
-        id="mobile-menu-btn"
-        class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition"
-        aria-label="Abrir menu"
-      >
-        <i data-lucide="menu"></i>
-      </button>
+        <div class="text-right hidden sm:block">
+          <p class="text-xs text-slate-500">Colônia Marcelino • São José dos Pinhais - PR</p>
+          <p class="text-xs font-medium text-slate-700">Colégio Estadual do Campo Irmã Ambrósia Sabatovich</p>
+        </div>
 
-      <!-- Menu Desktop -->
-      <nav class="hidden md:flex gap-6 font-medium text-sm text-slate-600">
-        <a href="#docentes" class="hover:text-blue-600 transition">Corpo Docente</a>
-        <a href="#gerador-prompt" class="hover:text-blue-600 transition">Gerador de Prompts</a>
+        <!-- Botão Menu Mobile -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+
+      <!-- Navegação Principal por Abas -->
+      <nav id="desktop-nav" class="hidden md:flex gap-1 pt-3 font-medium text-sm text-slate-600">
+        <button data-tab="inicio" class="nav-btn active">
+          <i data-lucide="newspaper" class="w-4 h-4 inline mr-1"></i> Capa
+        </button>
+        <button data-tab="noticias" class="nav-btn">
+          <i data-lucide="megaphone" class="w-4 h-4 inline mr-1"></i> Notícias da Colônia
+        </button>
+        <button data-tab="docentes" class="nav-btn">
+          <i data-lucide="users" class="w-4 h-4 inline mr-1"></i> Corpo Docente
+        </button>
+        <button data-tab="gerador-prompt" class="nav-btn">
+          <i data-lucide="sparkles" class="w-4 h-4 inline mr-1"></i> Gerador de Prompts
+        </button>
       </nav>
     </div>
 
-    <!-- Menu Mobile (Oculto por padrão) -->
-    <nav id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-3 flex flex-col gap-3 text-sm">
-      <a href="#docentes" class="block py-1 hover:text-blue-600">Corpo Docente</a>
-      <a href="#gerador-prompt" class="block py-1 hover:text-blue-600">Gerador de Prompts</a>
+    <!-- Menu Mobile -->
+    <nav id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 py-2 flex flex-col gap-1">
+      <button data-tab="inicio" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Capa</button>
+      <button data-tab="noticias" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Notícias da Colônia</button>
+      <button data-tab="docentes" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Corpo Docente</button>
+      <button data-tab="gerador-prompt" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Gerador de Prompts</button>
     </nav>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-10 space-y-16">
+  <!-- Conteúdo das Abas -->
+  <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full">
 
-    <!-- Seção Corpo Docente -->
-    <section id="docentes" class="space-y-6">
-      <div>
-        <h2 class="text-2xl font-bold text-slate-900">Corpo Docente</h2>
-        <p class="text-slate-600 text-sm">Conheça nossos educadores e suas áreas de atuação.</p>
+    <!-- Barra de Navegação Interna (Breadcrumb & Voltar) -->
+    <div id="navigation-bar" class="hidden items-center justify-between bg-white p-3 rounded-xl border border-slate-200 mb-6 shadow-sm">
+      <button id="btn-return-home" class="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar para a Capa
+      </button>
+      <span id="current-tab-title" class="text-xs font-semibold uppercase tracking-wider text-slate-400">Aba Atual</span>
+    </div>
+
+    <!-- ABA 1: CAPA (INÍCIO) -->
+    <section id="tab-inicio" class="tab-content space-y-8">
+      <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 space-y-4">
+          <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold uppercase rounded-full">Destaque Agroecológico</span>
+          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Projeto da Horta Comunitária fortalece integração entre escola e agricultura familiar</h2>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Estudantes e moradores da Colônia Marcelino uniram forças na implantação de um sistema agroecológico de cultivo dentro da instituição.
+          </p>
+          <button data-tab="noticias" class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-700 text-white font-medium text-sm rounded-xl hover:bg-emerald-800 transition">
+            Ler matérias completas <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl space-y-3">
+          <h3 class="font-bold text-slate-900 border-b border-slate-200 pb-2">Acesso Rápido</h3>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <button data-tab="docentes" class="w-full text-left font-medium text-emerald-700 hover:underline flex items-center justify-between">
+                Corpo Docente <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </li>
+            <li>
+              <button data-tab="gerador-prompt" class="w-full text-left font-medium text-emerald-700 hover:underline flex items-center justify-between">
+                Gerador de Prompts <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </li>
+            <li>
+              <button data-tab="noticias" class="w-full text-left font-medium text-emerald-700 hover:underline flex items-center justify-between">
+                Mural de Avisos <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABA 2: NOTÍCIAS DA COLÔNIA -->
+    <section id="tab-noticias" class="tab-content hidden space-y-6">
+      <div class="border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-serif font-bold text-slate-900">Informativo do Campo</h2>
+        <p class="text-slate-600 text-sm">Acompanhe as novidades do Colégio e da comunidade rural.</p>
       </div>
 
-      <!-- Filtros -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <span class="text-xs font-semibold uppercase text-emerald-700">Educação do Campo</span>
+          <h3 class="text-xl font-bold text-slate-900">Oficina de Agroecologia reúne alunos e produtores locais</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Sessões práticas destacaram práticas sustentáveis no manejo do solo e valorização da cultura local de São José dos Pinhais.
+          </p>
+        </article>
+
+        <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <span class="text-xs font-semibold uppercase text-emerald-700">Cultura e Tradição</span>
+          <h3 class="text-xl font-bold text-slate-900">Resgate histórico da Colônia Marcelino</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Atividade multidisciplinar resgata registros e memórias das famílias fundadoras da comunidade.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABA 3: CORPO DOCENTE -->
+    <section id="tab-docentes" class="tab-content hidden space-y-6">
+      <div class="border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-serif font-bold text-slate-900">Corpo Docente</h2>
+        <p class="text-slate-600 text-sm">Nossa equipe de educadores e áreas de conhecimento.</p>
+      </div>
+
       <div class="flex flex-col sm:flex-row gap-4">
         <input
           type="text"
           id="teacher-search"
           placeholder="Buscar professor..."
-          class="flex-1 px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          class="flex-1 px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white"
         />
         <select
           id="teacher-filter"
-          class="px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
+          class="px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white"
         >
           <option value="todos">Todas as matérias</option>
           <option value="Português">Português</option>
@@ -82,83 +172,60 @@
         </select>
       </div>
 
-      <!-- Grid de Professores -->
       <div id="teachers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-      <!-- Mensagem quando nenhum professor for encontrado -->
       <p id="no-teachers-found" class="hidden text-center text-slate-500 py-8">
-        Nenhum professor encontrado com esses critérios.
+        Nenhum professor encontrado para esta pesquisa.
       </p>
     </section>
 
-    <!-- Seção Gerador de Prompts -->
-    <section id="gerador-prompt" class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
-      <div>
-        <h2 class="text-2xl font-bold text-slate-900">Gerador de Prompts Escolares</h2>
-        <p class="text-slate-600 text-sm">Crie instruções estruturadas para auxílio nos estudos.</p>
+    <!-- ABA 4: GERADOR DE PROMPTS -->
+    <section id="tab-gerador-prompt" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+      <div class="border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-serif font-bold text-slate-900">Gerador de Prompts Escolares</h2>
+        <p class="text-slate-600 text-sm">Crie instruções pedagógicas alinhadas ao contexto da escola do campo.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label for="user-role" class="block text-xs font-semibold uppercase text-slate-500 mb-1">Perfil</label>
-          <input
-            type="text"
-            id="user-role"
-            value="Aluno do Ensino Fundamental"
-            class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-          />
+          <input type="text" id="user-role" value="Aluno do Ensino Fundamental" class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm" />
         </div>
 
         <div>
           <label for="prompt-goal" class="block text-xs font-semibold uppercase text-slate-500 mb-1">Objetivo</label>
-          <input
-            type="text"
-            id="prompt-goal"
-            value="Explicar um assunto escolar"
-            class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-          />
+          <input type="text" id="prompt-goal" value="Explicar um assunto escolar" class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm" />
         </div>
       </div>
 
       <div>
-        <label for="topic-input" class="block text-xs font-semibold uppercase text-slate-500 mb-1">
-          Matéria ou Tópico *
-        </label>
-        <input
-          type="text"
-          id="topic-input"
-          placeholder="Ex: Ciclo da água na agricultura"
-          class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-        />
+        <label for="topic-input" class="block text-xs font-semibold uppercase text-slate-500 mb-1">Matéria ou Tópico *</label>
+        <input type="text" id="topic-input" placeholder="Ex: Produção orgânica e sustentabilidade" class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm" />
       </div>
 
-      <button
-        id="btn-generate"
-        class="w-full sm:w-auto px-6 py-2.5 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition"
-      >
+      <button id="btn-generate" class="w-full sm:w-auto px-6 py-2.5 bg-emerald-700 text-white font-medium rounded-xl hover:bg-emerald-800 transition">
         Gerar Prompt
       </button>
 
-      <!-- Resultado do Prompt -->
       <div id="result-box" class="hidden mt-6 pt-6 border-t border-slate-200 space-y-3">
         <div class="flex items-center justify-between">
           <span class="text-xs font-semibold uppercase text-slate-500">Prompt Gerado</span>
-          <button
-            id="btn-copy"
-            class="flex items-center gap-1.5 px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-medium text-slate-700 transition"
-          >
+          <button id="btn-copy" class="flex items-center gap-1.5 px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-medium text-slate-700 transition">
             <i data-lucide="copy" class="w-3.5 h-3.5"></i>
             <span id="copy-text">Copiar</span>
           </button>
         </div>
-
         <pre id="generated-prompt-text" class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 whitespace-pre-wrap font-mono leading-relaxed max-h-96 overflow-y-auto"></pre>
       </div>
     </section>
 
   </main>
 
-  <!-- Script JS -->
+  <!-- Rodapé -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+    <p>© Colégio Estadual do Campo Irmã Ambrósia Sabatovich — Gazeta Digital</p>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
