@@ -2,11 +2,11 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Estilo dos botões da barra de navegação */
 .nav-btn {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.85rem;
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
+  white-space: nowrap;
 }
 
 .nav-btn:hover {
@@ -14,7 +14,6 @@ html {
   color: #047857;
 }
 
-/* Transição de entrada das seções */
 .tab-content {
   animation: fadeIn 0.25s ease-in-out forwards;
 }
@@ -30,7 +29,6 @@ html {
   }
 }
 
-/* Personalização da barra de rolagem da caixa do prompt */
 #generated-prompt-text::-webkit-scrollbar {
   width: 6px;
 }
@@ -39,3 +37,4 @@ html {
   background: #cbd5e1;
   border-radius: 4px;
 }
+

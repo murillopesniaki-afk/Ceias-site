@@ -5,26 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gazeta Escolar - Irmã Ambrósia Sabatovich</title>
  
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>  
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>  
-  <!-- Estilos Customizados -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
 
-  <!-- Cabeçalho em Estilo Jornalístico -->
+  <!-- Cabeçalho -->
   <header class="bg-white border-b-4 border-emerald-700 shadow-sm sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-4">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3">
         <div class="flex items-center gap-3">
-          <!-- Botão Voltar Ativo quando dentro de uma aba específica -->
           <button id="btn-back" class="hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition" aria-label="Voltar à página inicial">
             <i data-lucide="arrow-left" class="w-5 h-5"></i>
           </button>
           <div>
-            <span class="text-xs font-semibold tracking-widest uppercase text-emerald-700">Edição Digital</span>
+            <span class="text-xs font-semibold tracking-widest uppercase text-emerald-700">Edição Digital & Periodico</span>
             <h1 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Gazeta do Campo</h1>
           </div>
         </div>
@@ -34,19 +30,24 @@
           <p class="text-xs font-medium text-slate-700">Colégio Estadual do Campo Irmã Ambrósia Sabatovich</p>
         </div>
 
-        <!-- Botão Menu Mobile -->
         <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100">
           <i data-lucide="menu"></i>
         </button>
       </div>
 
-      <!-- Navegação Principal por Abas -->
+      <!-- Navegação Principal -->
       <nav id="desktop-nav" class="hidden md:flex gap-1 pt-3 font-medium text-sm text-slate-600">
         <button data-tab="inicio" class="nav-btn active">
           <i data-lucide="newspaper" class="w-4 h-4 inline mr-1"></i> Capa
         </button>
         <button data-tab="noticias" class="nav-btn">
-          <i data-lucide="megaphone" class="w-4 h-4 inline mr-1"></i> Notícias da Colônia
+          <i data-lucide="megaphone" class="w-4 h-4 inline mr-1"></i> Notícias
+        </button>
+        <button data-tab="galeria" class="nav-btn">
+          <i data-lucide="image" class="w-4 h-4 inline mr-1"></i> Galeria de Fotos
+        </button>
+        <button data-tab="edicoes" class="nav-btn">
+          <i data-lucide="book-open" class="w-4 h-4 inline mr-1"></i> Edições PDF
         </button>
         <button data-tab="docentes" class="nav-btn">
           <i data-lucide="users" class="w-4 h-4 inline mr-1"></i> Corpo Docente
@@ -60,16 +61,17 @@
     <!-- Menu Mobile -->
     <nav id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 py-2 flex flex-col gap-1">
       <button data-tab="inicio" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Capa</button>
-      <button data-tab="noticias" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Notícias da Colônia</button>
+      <button data-tab="noticias" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Notícias</button>
+      <button data-tab="galeria" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Galeria de Fotos</button>
+      <button data-tab="edicoes" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Edições PDF</button>
       <button data-tab="docentes" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Corpo Docente</button>
       <button data-tab="gerador-prompt" class="mobile-nav-btn text-left py-2 px-3 rounded-lg text-slate-700 font-medium">Gerador de Prompts</button>
     </nav>
   </header>
 
-  <!-- Conteúdo das Abas -->
+  <!-- Conteúdo Principal -->
   <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full">
 
-    <!-- Barra de Navegação Interna (Breadcrumb & Voltar) -->
     <div id="navigation-bar" class="hidden items-center justify-between bg-white p-3 rounded-xl border border-slate-200 mb-6 shadow-sm">
       <button id="btn-return-home" class="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition">
         <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar para a Capa
@@ -77,69 +79,180 @@
       <span id="current-tab-title" class="text-xs font-semibold uppercase tracking-wider text-slate-400">Aba Atual</span>
     </div>
 
-    <!-- ABA 1: CAPA (INÍCIO) -->
+    <!-- ABA 1: CAPA -->
     <section id="tab-inicio" class="tab-content space-y-8">
+      <!-- Destaque Principal -->
       <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="md:col-span-2 space-y-4">
           <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold uppercase rounded-full">Destaque Agroecológico</span>
-          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Projeto da Horta Comunitária fortalece integração entre escola e agricultura familiar</h2>
+          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 leading-tight">Projeto da Horta Comunitária fortalece integração entre escola e agricultura familiar</h2>
           <p class="text-slate-600 leading-relaxed text-sm">
-            Estudantes e moradores da Colônia Marcelino uniram forças na implantação de um sistema agroecológico de cultivo dentro da instituição.
+            Estudantes e moradores da Colônia Marcelino uniram forças na implantação de um sistema agroecológico de cultivo dentro da instituição escolar.
           </p>
           <button data-tab="noticias" class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-700 text-white font-medium text-sm rounded-xl hover:bg-emerald-800 transition">
             Ler matérias completas <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
         </div>
-        <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl space-y-3">
-          <h3 class="font-bold text-slate-900 border-b border-slate-200 pb-2">Acesso Rápido</h3>
-          <ul class="space-y-2 text-sm">
-            <li>
-              <button data-tab="docentes" class="w-full text-left font-medium text-emerald-700 hover:underline flex items-center justify-between">
-                Corpo Docente <i data-lucide="chevron-right" class="w-4 h-4"></i>
-              </button>
+
+        <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl space-y-4">
+          <h3 class="font-bold text-slate-900 border-b border-slate-200 pb-2 flex items-center gap-2">
+            <i data-lucide="calendar" class="w-4 h-4 text-emerald-700"></i> Calendário do Campo
+          </h3>
+          <ul class="space-y-3 text-xs text-slate-600">
+            <li class="border-l-2 border-emerald-600 pl-2">
+              <strong class="block text-slate-800">15 de Novembro</strong>
+              Feira de Troca de Sementes Crioulas
             </li>
-            <li>
-              <button data-tab="gerador-prompt" class="w-full text-left font-medium text-emerald-700 hover:underline flex items-center justify-between">
-                Gerador de Prompts <i data-lucide="chevron-right" class="w-4 h-4"></i>
-              </button>
-            </li>
-            <li>
-              <button data-tab="noticias" class="w-full text-left font-medium text-emerald-700 hover:underline flex items-center justify-between">
-                Mural de Avisos <i data-lucide="chevron-right" class="w-4 h-4"></i>
-              </button>
+            <li class="border-l-2 border-emerald-600 pl-2">
+              <strong class="block text-slate-800">22 de Novembro</strong>
+              Exposição Cultural da Colônia Marcelino
             </li>
           </ul>
         </div>
       </div>
+
+      <!-- Indicadores de Impacto -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center space-y-1">
+          <span class="text-2xl font-bold text-emerald-700">100%</span>
+          <p class="text-xs text-slate-500 font-medium">Foco no Ensino do Campo</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center space-y-1">
+          <span class="text-2xl font-bold text-emerald-700">11</span>
+          <p class="text-xs text-slate-500 font-medium">Disciplinas Integradas</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center space-y-1">
+          <span class="text-2xl font-bold text-emerald-700">12+</span>
+          <p class="text-xs text-slate-500 font-medium">Projetos Comunitários</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center space-y-1">
+          <span class="text-2xl font-bold text-emerald-700">Edição #04</span>
+          <p class="text-xs text-slate-500 font-medium">Gazeta Digital Ativa</p>
+        </div>
+      </div>
+
+      <!-- Envie sua Pauta -->
+      <div class="bg-emerald-900 text-white p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="text-lg font-bold">Tem uma história ou notícia da Colônia Marcelino?</h3>
+          <p class="text-xs text-emerald-200">Envie sua sugestão para ser publicada na próxima edição da Gazeta.</p>
+        </div>
+        <button data-tab="noticias" class="px-5 py-2.5 bg-white text-emerald-900 font-semibold text-xs rounded-xl hover:bg-emerald-50 transition whitespace-nowrap">
+          Sugerir Notícia
+        </button>
+      </div>
     </section>
 
-    <!-- ABA 2: NOTÍCIAS DA COLÔNIA -->
+    <!-- ABA 2: NOTÍCIAS -->
     <section id="tab-noticias" class="tab-content hidden space-y-6">
       <div class="border-b border-slate-200 pb-4">
-        <h2 class="text-2xl font-serif font-bold text-slate-900">Informativo do Campo</h2>
-        <p class="text-slate-600 text-sm">Acompanhe as novidades do Colégio e da comunidade rural.</p>
+        <h2 class="text-2xl font-serif font-bold text-slate-900">Mural de Notícias & Matérias</h2>
+        <p class="text-slate-600 text-sm">Projetos, vivências e cotidiano do Colégio do Campo.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-          <span class="text-xs font-semibold uppercase text-emerald-700">Educação do Campo</span>
-          <h3 class="text-xl font-bold text-slate-900">Oficina de Agroecologia reúne alunos e produtores locais</h3>
+          <span class="text-xs font-semibold uppercase text-emerald-700">Agroecologia</span>
+          <h3 class="text-xl font-bold text-slate-900">Oficina de Manejo Sustentável do Solo</h3>
           <p class="text-sm text-slate-600 leading-relaxed">
-            Sessões práticas destacaram práticas sustentáveis no manejo do solo e valorização da cultura local de São José dos Pinhais.
+            Alunos aprendem técnicas práticas de compostagem orgânica e preservação de nascentes com instrutores locais.
           </p>
         </article>
 
         <article class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-          <span class="text-xs font-semibold uppercase text-emerald-700">Cultura e Tradição</span>
-          <h3 class="text-xl font-bold text-slate-900">Resgate histórico da Colônia Marcelino</h3>
+          <span class="text-xs font-semibold uppercase text-emerald-700">Memória Local</span>
+          <h3 class="text-xl font-bold text-slate-900">Resgate das Tradições da Colônia Marcelino</h3>
           <p class="text-sm text-slate-600 leading-relaxed">
-            Atividade multidisciplinar resgata registros e memórias das famílias fundadoras da comunidade.
+            Entrevistas realizadas pelos estudantes com os moradores mais antigos registram a história da imigração e do cultivo regional.
           </p>
         </article>
       </div>
+
+      <!-- Formulário para Sugestão de Pauta -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-4">
+        <h3 class="text-lg font-bold text-slate-900">Enviar Sugestão de Pauta</h3>
+        <form id="form-pauta" class="space-y-3">
+          <div>
+            <input type="text" id="pauta-nome" placeholder="Seu nome (opcional)" class="w-full px-4 py-2 border rounded-xl text-sm" />
+          </div>
+          <div>
+            <textarea id="pauta-mensagem" placeholder="Descreva sua sugestão de notícia..." required class="w-full px-4 py-2 border rounded-xl text-sm h-24"></textarea>
+          </div>
+          <button type="submit" class="px-5 py-2 bg-emerald-700 text-white rounded-xl text-sm font-medium hover:bg-emerald-800 transition">
+            Enviar Sugestão
+          </button>
+        </form>
+        <p id="pauta-feedback" class="hidden text-xs text-emerald-700 font-medium">Obrigado! Sua pauta foi enviada com sucesso.</p>
+      </div>
     </section>
 
-    <!-- ABA 3: CORPO DOCENTE -->
+    <!-- ABA 3: GALERIA DE FOTOS -->
+    <section id="tab-galeria" class="tab-content hidden space-y-6">
+      <div class="border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-serif font-bold text-slate-900">Galeria da Nossa Comunidade</h2>
+        <p class="text-slate-600 text-sm">Registros das atividades pedagógicas, feiras e vivências no campo.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="bg-white p-3 rounded-2xl border border-slate-200 space-y-2">
+          <div class="h-40 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-700">
+            <i data-lucide="sprout" class="w-12 h-12"></i>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900">Horta Pedagógica</h4>
+          <p class="text-xs text-slate-500">Preparo do solo e plantio de hortaliças orgânicas.</p>
+        </div>
+
+        <div class="bg-white p-3 rounded-2xl border border-slate-200 space-y-2">
+          <div class="h-40 bg-blue-100 rounded-xl flex items-center justify-center text-blue-700">
+            <i data-lucide="book-open-check" class="w-12 h-12"></i>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900">Aulas ao Ar Livre</h4>
+          <p class="text-xs text-slate-500">Estudos integrados de biologia e geografia local.</p>
+        </div>
+
+        <div class="bg-white p-3 rounded-2xl border border-slate-200 space-y-2">
+          <div class="h-40 bg-amber-100 rounded-xl flex items-center justify-center text-amber-700">
+            <i data-lucide="sun" class="w-12 h-12"></i>
+          </div>
+          <h4 class="font-bold text-sm text-slate-900">Feira Cultural</h4>
+          <p class="text-xs text-slate-500">Apresentação dos trabalhos e culinária da comunidade.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABA 4: EDIÇÕES EM PDF -->
+    <section id="tab-edicoes" class="tab-content hidden space-y-6">
+      <div class="border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-serif font-bold text-slate-900">Arquivo de Edições Impressas</h2>
+        <p class="text-slate-600 text-sm">Acesse e baixe as edições do jornal da escola em formato digital.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 flex justify-between items-center">
+          <div>
+            <span class="text-xs font-bold text-emerald-700">Edição #03</span>
+            <h4 class="font-bold text-slate-900 text-sm">Especial Agroecologia</h4>
+            <p class="text-xs text-slate-500">Outubro de 2026</p>
+          </div>
+          <button onclick="alert('Download da Edição #03 iniciado!')" class="p-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl transition">
+            <i data-lucide="download" class="w-4 h-4 text-slate-700"></i>
+          </button>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 flex justify-between items-center">
+          <div>
+            <span class="text-xs font-bold text-emerald-700">Edição #02</span>
+            <h4 class="font-bold text-slate-900 text-sm">História da Colônia</h4>
+            <p class="text-xs text-slate-500">Agosto de 2026</p>
+          </div>
+          <button onclick="alert('Download da Edição #02 iniciado!')" class="p-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl transition">
+            <i data-lucide="download" class="w-4 h-4 text-slate-700"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABA 5: CORPO DOCENTE -->
     <section id="tab-docentes" class="tab-content hidden space-y-6">
       <div class="border-b border-slate-200 pb-4">
         <h2 class="text-2xl font-serif font-bold text-slate-900">Corpo Docente</h2>
@@ -147,16 +260,8 @@
       </div>
 
       <div class="flex flex-col sm:flex-row gap-4">
-        <input
-          type="text"
-          id="teacher-search"
-          placeholder="Buscar professor..."
-          class="flex-1 px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white"
-        />
-        <select
-          id="teacher-filter"
-          class="px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white"
-        >
+        <input type="text" id="teacher-search" placeholder="Buscar professor..." class="flex-1 px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white" />
+        <select id="teacher-filter" class="px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white">
           <option value="todos">Todas as matérias</option>
           <option value="Português">Português</option>
           <option value="Matemática">Matemática</option>
@@ -173,13 +278,10 @@
       </div>
 
       <div id="teachers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-      <p id="no-teachers-found" class="hidden text-center text-slate-500 py-8">
-        Nenhum professor encontrado para esta pesquisa.
-      </p>
+      <p id="no-teachers-found" class="hidden text-center text-slate-500 py-8">Nenhum professor encontrado.</p>
     </section>
 
-    <!-- ABA 4: GERADOR DE PROMPTS -->
+    <!-- ABA 6: GERADOR DE PROMPTS -->
     <section id="tab-gerador-prompt" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
       <div class="border-b border-slate-200 pb-4">
         <h2 class="text-2xl font-serif font-bold text-slate-900">Gerador de Prompts Escolares</h2>
@@ -191,7 +293,6 @@
           <label for="user-role" class="block text-xs font-semibold uppercase text-slate-500 mb-1">Perfil</label>
           <input type="text" id="user-role" value="Aluno do Ensino Fundamental" class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm" />
         </div>
-
         <div>
           <label for="prompt-goal" class="block text-xs font-semibold uppercase text-slate-500 mb-1">Objetivo</label>
           <input type="text" id="prompt-goal" value="Explicar um assunto escolar" class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm" />
@@ -221,7 +322,6 @@
 
   </main>
 
-  <!-- Rodapé -->
   <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
     <p>© Colégio Estadual do Campo Irmã Ambrósia Sabatovich — Gazeta Digital</p>
   </footer>
@@ -229,3 +329,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+

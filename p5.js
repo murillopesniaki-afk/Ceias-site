@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Renderização de Ícones Lucide
   function renderIcons() {
     if (window.lucide && typeof window.lucide.createIcons === "function") {
       window.lucide.createIcons();
@@ -7,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   renderIcons();
 
-  // Gerenciamento de Abas e Histórico de Navegação (Navegação Ativa)
+  // Navegação e Abas
   const tabs = document.querySelectorAll(".tab-content");
   const navButtons = document.querySelectorAll("[data-tab]");
   const navigationBar = document.getElementById("navigation-bar");
@@ -17,16 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const tabNames = {
     inicio: "Capa",
-    noticias: "Notícias da Colônia",
+    noticias: "Notícias",
+    galeria: "Galeria de Fotos",
+    edicoes: "Edições PDF",
     docentes: "Corpo Docente",
     "gerador-prompt": "Gerador de Prompts"
   };
 
   function switchTab(tabId, pushToHistory = true) {
-    // Esconde todas as abas
     tabs.forEach((tab) => tab.classList.add("hidden"));
 
-    // Exibe a aba solicitada
     const targetTab = document.getElementById(`tab-${tabId}`);
     if (targetTab) {
       targetTab.classList.remove("hidden");
@@ -35,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
       tabId = "inicio";
     }
 
-    // Atualiza o estado visual dos botões de navegação
     navButtons.forEach((btn) => {
       if (btn.getAttribute("data-tab") === tabId) {
         btn.classList.add("active", "bg-emerald-50", "text-emerald-800", "font-bold");
@@ -44,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Controla a exibição das opções de navegação/voltar
     if (tabId === "inicio") {
       navigationBar?.classList.add("hidden");
       navigationBar?.classList.remove("flex");
@@ -53,12 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
       navigationBar?.classList.remove("hidden");
       navigationBar?.classList.add("flex");
       btnBack?.classList.remove("hidden");
-      if (currentTabTitle) {
-        currentTabTitle.textContent = tabNames[tabId] || tabId;
-      }
+      if (currentTabTitle) currentTabTitle.textContent = tabNames[tabId] || tabId;
     }
 
-    // Grava no histórico do navegador para permitir uso das setas do navegador
     if (pushToHistory) {
       history.pushState({ tab: tabId }, "", `#${tabId}`);
     }
@@ -67,49 +61,42 @@ document.addEventListener("DOMContentLoaded", () => {
     renderIcons();
   }
 
-  // Eventos de clique nas abas
   navButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const tabId = btn.getAttribute("data-tab");
       switchTab(tabId);
-
-      // Fecha o menu mobile se aberto
       const mobileMenu = document.getElementById("mobile-menu");
-      if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
-        mobileMenu.classList.add("hidden");
-      }
+      if (mobileMenu) mobileMenu.classList.add("hidden");
     });
   });
 
-  // Ação de Voltar (Seta Superior e Botão de Barra Interna)
   btnBack?.addEventListener("click", () => switchTab("inicio"));
   btnReturnHome?.addEventListener("click", () => switchTab("inicio"));
 
-  // Suporte às setas do próprio navegador (Avançar/Voltar)
   window.addEventListener("popstate", (e) => {
-    if (e.state && e.state.tab) {
-      switchTab(e.state.tab, false);
-    } else {
-      const hash = window.location.hash.replace("#", "") || "inicio";
-      switchTab(hash, false);
-    }
+    const tab = e.state?.tab || window.location.hash.replace("#", "") || "inicio";
+    switchTab(tab, false);
   });
 
-  // Carrega a aba de acordo com o link/hash atual
   const initialHash = window.location.hash.replace("#", "") || "inicio";
   switchTab(initialHash, false);
 
   // Menu Mobile
   const menuButton = document.getElementById("mobile-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
+  menuButton?.addEventListener("click", () => mobileMenu?.classList.toggle("hidden"));
 
-  if (menuButton && mobileMenu) {
-    menuButton.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-  }
+  // Formulário de Sugestão de Pauta
+  const formPauta = document.getElementById("form-pauta");
+  const pautaFeedback = document.getElementById("pauta-feedback");
+  formPauta?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    pautaFeedback?.classList.remove("hidden");
+    formPauta.reset();
+    setTimeout(() => pautaFeedback?.classList.add("hidden"), 3000);
+  });
 
-  // Renderização do Corpo Docente
+  // Corpo Docente
   const teachers = [
     { name: "Professor(a) de Língua Portuguesa", subject: "Português", description: "Língua Portuguesa e produção textual." },
     { name: "Professor(a) de Matemática", subject: "Matemática", description: "Raciocínio lógico e resolução de problemas." },
@@ -131,19 +118,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderTeachers() {
     if (!teacherGrid) return;
-
     const query = (teacherSearch?.value || "").trim().toLocaleLowerCase("pt-BR");
     const subject = teacherFilter?.value || "todos";
 
-    const filteredTeachers = teachers.filter((teacher) => {
-      const matchesName = teacher.name.toLocaleLowerCase("pt-BR").includes(query);
-      const matchesSubject = subject === "todos" || teacher.subject === subject;
-      return matchesName && matchesSubject;
+    const filtered = teachers.filter((t) => {
+      const matchName = t.name.toLocaleLowerCase("pt-BR").includes(query);
+      const matchSubject = subject === "todos" || t.subject === subject;
+      return matchName && matchSubject;
     });
 
     teacherGrid.replaceChildren();
 
-    filteredTeachers.forEach((teacher) => {
+    filtered.forEach((teacher) => {
       const card = document.createElement("article");
       card.className = "bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-200";
 
@@ -167,10 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
       teacherGrid.appendChild(card);
     });
 
-    if (noTeachersFound) {
-      noTeachersFound.classList.toggle("hidden", filteredTeachers.length > 0);
-    }
-
+    if (noTeachersFound) noTeachersFound.classList.toggle("hidden", filtered.length > 0);
     renderIcons();
   }
 
@@ -235,14 +218,12 @@ document.addEventListener("DOMContentLoaded", () => {
   copyButton?.addEventListener("click", async () => {
     const text = generatedText?.textContent || "";
     if (!text) return;
-
     try {
       await navigator.clipboard.writeText(text);
       if (copyText) copyText.textContent = "Copiado!";
     } catch {
       if (copyText) copyText.textContent = "Erro ao copiar";
     }
-
     setTimeout(() => {
       if (copyText) copyText.textContent = "Copiar";
     }, 2000);
